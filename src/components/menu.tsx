@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image'
+import Link from 'next/link';
 import SearchInput from './search-input'
 import { Logo } from '@/components/logorm'
 import { MenuItem } from '@/components/menu-item'
