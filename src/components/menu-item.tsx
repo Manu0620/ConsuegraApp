@@ -1,8 +1,13 @@
 import React from 'react'
 
-export const MenuItem = (props) => {
+interface Props {
+    name: string, 
+    hasIcon: boolean
+}
+
+export const MenuItem = (props: Props) => {
     return(
-        <li className='mx-3 hover:text-blue-950 text-pretty'>
+        <li className='mx-3 hover:text-blue-900 text-pretty'>
             <a className='flex items-center' href="">
                 {props.name}
                 {props.hasIcon ? (

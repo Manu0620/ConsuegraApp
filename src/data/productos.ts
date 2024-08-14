@@ -18,7 +18,7 @@ export const productos = [
         portrait: '/products/hidrolavadora.webp',
         name: "Hidrolavadora multifuncional",
         description: "Hidrolavadora multifuncional electrica importada",
-        price: "RD$ 6500.00",
+        price: "RD$ 6,500.00",
     },
     {
         id: 33,
