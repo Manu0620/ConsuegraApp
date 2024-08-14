@@ -5,8 +5,6 @@ import { productos } from '@/data/productos';
 import { Footer } from '@/components/footer';
 import { Category } from "@/components/category";
 
-import i from '../assets/icons/electrico.png'
-
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
@@ -15,12 +13,12 @@ export default function Home() {
       </section>
 
       <section className="mt-[-60px] relative z-20 flex flex-col w-full h-[70vh] items-center justify-start bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-        <h1 className="pt-20 text-3xl text-red-700 font-bold m-10 text-pretty">Tenemos gran variedad de productos para ti.</h1>
+        <h1 className="pt-20 text-3xl text-blue-900 font-bold m-10 text-pretty">Tenemos gran variedad de productos para ti.</h1>
         <Category />
       </section>
 
       <section className="mt-[-60px] relative z-10 flex flex-col w-full h-[60vh] items-center bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-        <h1 className="pt-20 text-3xl text-red-700 font-bold m-10 text-pretty">Productos que te sugerimos.</h1>
+        <h1 className="pt-20 text-3xl text-blue-900 font-bold m-10 text-pretty">Productos que te sugerimos.</h1>
         <div className="product-carousel flex flex-row mx-30 w-full justify-center items-center">
           {productos.map((producto, index) => (
               <div key={index} className="card flex flex-col m-5 w-full h-full items-center justify-start text-pretty">
