@@ -1,57 +1,40 @@
+<<<<<<< HEAD
 import { SearchInput } from '../components/search-input';
+=======
+"use client";
+>>>>>>> 4d13d9dda2ff93af280379a2173a782cbcff08e3
 
+import Image from 'next/image'
+import Link from 'next/link';
+import SearchInput from './search-input'
+import { Logo } from '@/components/logorm'
+import { MenuItem } from '@/components/menu-item'
+import { useState } from 'react'
 
+<<<<<<< HEAD
 export const Menu = () => {
+=======
+export default function Menu() {
+    const [mobileDrawerOpen, setMobileDrawer] = useState(false);
+    const toggleNavbar = () =>{
+        setMobileDrawer(!mobileDrawerOpen);
+    };
+
+>>>>>>> 4d13d9dda2ff93af280379a2173a782cbcff08e3
     return(
         <nav className="flex w-full flex-col font-medium">
-            <div className='nav-header relative z-10 flex flex-row w-full bg-white h-32 border border-transparent rounded-bl-[60px] rounded-br-[30px] overflow-hidden'>
-                <div className="logo flex grow p-5 justify-center items-center font-bold">
-                    <h1 className="pl-5 text-lg text-red-600 text-pretty">Grupo<br/><span className='text-4xl text-blue-700 text-pretty'>Consuegra</span></h1>
-                </div>
+            <div className='nav-header relative z-50 flex flex-row w-full bg-white h-32 border border-transparent rounded-bl-[60px] rounded-br-[30px] overflow-hidden'>
+                <Logo />
                 <SearchInput />
+                <button type="submit" className="text-white mr-10 h-12 self-center bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:outline-none font-medium rounded-[15px] text-sm px-4 py-2">Catalogo de productos</button>
             </div>
-            <div className='nav-bar mt-[-60px] relative z-0 flex flex-row w-full h-36 justify-center items-center bg-red-700 border border-transparent rounded-bl-[60px] rounded-br-[30px] overflow-hidden'>
+            <div className='nav-bar mt-[-60px] relative z-40 flex flex-row w-full h-36 justify-center items-center bg-red-700 border border-transparent rounded-bl-[60px] rounded-br-[30px] overflow-hidden'>
                 <ul className='pt-14 flex flex-row text-lg  text-white'>
-                    <li className='mx-3 hover:text-blue-950'>
-                        <a className='flex items-center' href="">
-                            Productos
-                            <svg className="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li className='mx-3 hover:text-blue-950'>
-                        <a className='flex items-center' href="">
-                            Servicios
-                            <svg className="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li className='mx-3 hover:text-blue-950'>
-                        <a className='flex items-center' href="">
-                            Sucursales
-                            <svg className="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li className='mx-3 hover:text-blue-950'>
-                        <a className='flex items-center' href="">
-                            Nosotros
-                            <svg className="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li className='mx-3 hover:text-blue-950'>
-                        <a className='flex items-center' href="">
-                            Contactanos
-                            <svg className="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
-                            </svg>
-                        </a>
-                    </li>
+                    <MenuItem name="Productos" hasIcon={false}/>
+                    <MenuItem name="Servicios" hasIcon={true}/>
+                    <MenuItem name="Sucursales" hasIcon={true}/>
+                    <MenuItem name="Nosotros" hasIcon={true}/>
+                    <MenuItem name="Contactanos" hasIcon={false}/>
                 </ul>
             </div>
         </nav>
