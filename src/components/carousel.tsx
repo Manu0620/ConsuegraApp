@@ -1,6 +1,6 @@
-import React from "react";
 
-export default function Carousel({children: slides}) {
+
+export const Carousel = ({children: slides}) => {
     return (
         <div>
             <div>

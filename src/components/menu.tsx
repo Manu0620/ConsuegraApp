@@ -1,8 +1,7 @@
-import Image from 'next/image';
-import SearchInput from './search-input';
+import { SearchInput } from '../components/search-input';
 
 
-export default function Menu() {
+export const Menu = () => {
     return(
         <nav className="flex w-full flex-col font-medium">
             <div className='nav-header relative z-10 flex flex-row w-full bg-white h-32 border border-transparent rounded-bl-[60px] rounded-br-[30px] overflow-hidden'>

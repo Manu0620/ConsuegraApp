@@ -1,6 +1,6 @@
-import React from "react";
 
-const SearchInput = () => {
+
+export const SearchInput = () => {
     return(
         <div className="flex grow items-center justify-center px-3">
             <form className="w-1/2">   
@@ -17,5 +17,3 @@ const SearchInput = () => {
         </div>  
     );
 }
-
-export default SearchInput;
