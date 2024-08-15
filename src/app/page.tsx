@@ -1,36 +1,16 @@
-import { Carousel } from "@/components/carousel";
 import Image from "next/image";
-<<<<<<< HEAD
-import { Menu } from "../components/menu";
 
-const slides = [
-    "/slides/slide1.jpg",
-    "/slides/slide2.jpg",
-]
-=======
-import Menu from "../components/menu";
-import React from "react";
-import { productos } from '@/data/productos';
-import { Footer } from '@/components/footer';
 import { Category } from "@/components/category";
->>>>>>> 4d13d9dda2ff93af280379a2173a782cbcff08e3
+import { Footer } from '@/components/footer';
+import { productos } from '@/data/productos';
+import { Menu } from "../components/menu";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
       <Menu />
-<<<<<<< HEAD
-      <section className="mt-[-60px] home-banner-container flex flex-row w-full h-[75vh] items-center bg-blue-950 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-         <Carousel>
-            {
-              slides.map((slide) => (
-                <Image src={slide} alt="..." />
-              ))
-            }
-         </Carousel>
-=======
       <section className="slider-container bg-cover bg-[url('/HeroMainImage.png')] mt-[-60px] relative z-30 flex flex-row w-full h-[80vh] items-center bg-blue-950 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
->>>>>>> 4d13d9dda2ff93af280379a2173a782cbcff08e3
+
       </section>
 
       <section className="mt-[-60px] relative z-20 flex flex-col w-full h-[70vh] items-center justify-start bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
