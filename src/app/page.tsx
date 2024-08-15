@@ -12,13 +12,17 @@ export default function Home() {
       <section className="slider-container bg-cover bg-[url('/HeroMainImage.png')] mt-36 relative z-30 flex flex-row w-full min-h-[80vh] items-center bg-blue-950 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
 
       </section>
+      
+      <section className="mt-[-60px] relative z-20 flex flex-col w-full min-h-[70vh] items-center justify-start bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
 
-      <section className="mt-[-60px] relative z-20 flex flex-col w-full min-h-[70vh] items-center justify-start bg-red-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+      </section>
+
+      <section className="mt-[-60px] relative z-10 flex flex-col w-full min-h-[70vh] items-center justify-start bg-red-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
         <h1 className="pt-20 text-3xl text-red-700 font-bold m-10 text-pretty">Tenemos gran variedad de productos para ti.</h1>
         <Category />
       </section>
 
-      <section className="mt-[-60px] relative z-10 flex flex-col w-full min-h-[60vh] items-center bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+      <section className="mt-[-60px] relative z-0 flex flex-col w-full min-h-[60vh] items-center bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
         <h1 className="pt-20 text-3xl text-blue-900 font-bold mt-10 text-pretty">Productos destacados.</h1>
         <div className="product-carousel flex flex-row flex-wrap mx-50 my-10 w-3/4 justify-center items-center">
           {productos.map((producto, index) => (

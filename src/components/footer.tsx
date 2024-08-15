@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Footer = () => {
     return(
-        <footer className="mt-[-60px] relative flex flex-col w-full min-h-[55vh] justify-center items-center bg-blue-900 text-white text-pretty">
+        <footer className="mt-[-60px] relative -z-50 flex flex-col w-full min-h-[55vh] justify-center items-center bg-red-800 text-white text-pretty">
             <h1 className="text-5xl font-bold">Fin.</h1>
             <div className="social-media flex flex-row absolute inset-x-0 bottom-5 w-full justify-center text-white text-md font-medium"> 
                 <a href="https://www.instagram.com/rmconsuegrasrl/" className="mx-2 flex items-center text-pretty"  target="_blank">
