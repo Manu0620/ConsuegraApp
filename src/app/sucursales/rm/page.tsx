@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Menu from "@/components/menu";
+import {Menu} from "@/components/menu";
 import React from "react";
 import { Footer } from '@/components/footer';
 

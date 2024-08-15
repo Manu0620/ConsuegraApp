@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Footer = () => {
     return(
-        <footer className="mt-[-60px] relative flex flex-col w-full h-[65vh] justify-center items-center bg-blue-900 text-white text-pretty">
+        <footer className="mt-[-60px] relative flex flex-col w-full min-h-[55vh] justify-center items-center bg-blue-900 text-white text-pretty">
             <h1 className="text-5xl font-bold">Fin.</h1>
             <div className="social-media flex flex-row absolute inset-x-0 bottom-5 w-full justify-center text-white text-md font-medium"> 
                 <a href="https://www.instagram.com/rmconsuegrasrl/" className="mx-2 flex items-center text-pretty"  target="_blank">
@@ -17,12 +17,6 @@ export const Footer = () => {
                         <path fillRule="evenodd" d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z" clipRule="evenodd"/>
                     </svg>
                     Facebook
-                </a>
-                <a href="https://rmconsuegra.com/" className="mx-2 flex items-center text-pretty"  target="_blank">
-                    <svg className="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 14v4.833A1.166 1.166 0 0 1 16.833 20H5.167A1.167 1.167 0 0 1 4 18.833V7.167A1.166 1.166 0 0 1 5.167 6h4.618m4.447-2H20v5.768m-7.889 2.121 7.778-7.778"/>
-                    </svg>
-                    Pagina Web
                 </a>
             </div>
         </footer>

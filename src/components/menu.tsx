@@ -1,26 +1,18 @@
-<<<<<<< HEAD
-import { SearchInput } from '../components/search-input';
-=======
 "use client";
->>>>>>> 4d13d9dda2ff93af280379a2173a782cbcff08e3
 
 import Image from 'next/image'
 import Link from 'next/link';
-import SearchInput from './search-input'
 import { Logo } from '@/components/logorm'
+import { SearchInput } from '../components/search-input';
 import { MenuItem } from '@/components/menu-item'
 import { useState } from 'react'
 
-<<<<<<< HEAD
 export const Menu = () => {
-=======
-export default function Menu() {
     const [mobileDrawerOpen, setMobileDrawer] = useState(false);
     const toggleNavbar = () =>{
         setMobileDrawer(!mobileDrawerOpen);
     };
 
->>>>>>> 4d13d9dda2ff93af280379a2173a782cbcff08e3
     return(
         <nav className="flex w-full flex-col font-medium">
             <div className='nav-header relative z-50 flex flex-row w-full bg-white h-32 border border-transparent rounded-bl-[60px] rounded-br-[30px] overflow-hidden'>
