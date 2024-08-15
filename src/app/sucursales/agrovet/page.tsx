@@ -7,7 +7,7 @@ export default function Agrovet() {
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
       <Menu />
-      <section className="hero-agrovet bg-cover bg-top bg-[url('/agrovet-hero.png')] mt-[-60px] relative z-30 flex flex-row w-full h-[50vh] items-center bg-blue-950 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+      <section className="hero-agrovet bg-cover bg-top bg-[url('/agrovet-hero.png')] mt-36 relative z-30 flex flex-row w-full h-[50vh] items-center bg-blue-950 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
         
       </section>
       <section className="mt-[-60px] relative z-20 flex flex-col w-full h-[60vh] items-center bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 

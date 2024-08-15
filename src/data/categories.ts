@@ -17,12 +17,12 @@ export const Categories = [
         icon: '/icons/construccion.png',
         name: 'Construccion',
     },
-    {
-        icon: '/icons/madera.png',
-        name: 'Madera',
-    },
-    {
-        icon: '/icons/bano.png',
-        name: 'Baños',
-    }
+    // {
+    //     icon: '/icons/madera.png',
+    //     name: 'Madera',
+    // },
+    // {
+    //     icon: '/icons/bano.png',
+    //     name: 'Baños',
+    // }
 ]

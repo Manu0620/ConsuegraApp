@@ -6,7 +6,7 @@ import LogoIMG from '../../public/Logo.png'
 
 export const Logo = () => {
     return(
-        <div className="logo flex flex-row grow p-5 justify-center items-center font-bold">
+        <div className="logo flex flex-row grow p-5 justify-start items-center font-bold">
             <Link href='/' className="flex flex-row">
                 <Image src={LogoIMG} alt='...' width={80}/>
                 <h1 className="leading-none pb-2 text-lg text-red-600 text-pretty">

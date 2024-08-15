@@ -2,8 +2,8 @@
 
 export const SearchInput = () => {
     return(
-        <div className="flex grow items-center justify-center px-3">
-            <form className="w-5/6">   
+        <div className="flex grow items-center justify-end px-3">
+            <form className="w-4/6">   
                 <div className="relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg className="w-4 h-4 text-red-700 white:text-red-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">

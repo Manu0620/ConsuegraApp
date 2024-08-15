@@ -14,7 +14,7 @@ export const Menu = () => {
     };
 
     return(
-        <nav className="flex w-full flex-col font-medium">
+        <nav className="flex z-50 w-full flex-col font-medium fixed">
             <div className='nav-header relative z-50 flex flex-row w-full bg-white h-32 border border-transparent rounded-bl-[60px] rounded-br-[30px] overflow-hidden'>
                 <Logo />
                 <SearchInput />
