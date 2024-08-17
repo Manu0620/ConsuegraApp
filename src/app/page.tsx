@@ -21,10 +21,10 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-0 m-0 bg-red">
       <Menu />
-      <section className="slider-container mt-36 relative z-30 flex flex-row w-full min-h-[80vh] items-center bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+      <section className="slider-container mt-36 relative z-30 flex flex-row w-full items-center bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
         <Swiper
           // install Swiper modules
-          className="min-w-full h-[80vh] m-0 p-0 border border-transparent rounded-bl-[60px] rounded-br-[30px]"
+          className="min-w-full min-h-fit mt-8 border border-transparent rounded-bl-[60px] rounded-br-[30px]"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={1}
           speed={500}
@@ -35,9 +35,15 @@ export default function Home() {
           <SwiperSlide>
             <img src={'/HeroMainImage.png'} className="object-cover"/>
           </SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
+          <SwiperSlide>
+            <img src={'/rm-hero.png'} className="object-cover"/>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={'/moca-hero.png'} className="object-cover"/>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={'/colorado-hero.png'} className="object-cover"/>
+          </SwiperSlide>
         </Swiper>
       </section>
       
