@@ -9,7 +9,7 @@ export const productos = [
     {
         id: 2342,
         portrait: '/products/calentador-electrico.jpg',
-        name: "Calentadores electricos",
+        name: "Calentadores eléctricos",
         description: "Calentadores eléctricos de agua de alta eficiencia, diseñados para ofrecer un calentamiento rápido y uniforme. ",
         price: "RD$ 11,500.00",
     },

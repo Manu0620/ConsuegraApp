@@ -3,7 +3,7 @@
 export const Categories = [
     {
         icon: '/icons/ferreteria.png',
-        name: 'Ferreteria',
+        name: 'Ferretería',
     },
     {
         icon: '/icons/electrico.png',
@@ -11,11 +11,11 @@ export const Categories = [
     },
     {
         icon: '/icons/plomeria.png',
-        name: 'Plomeria',
+        name: 'Plomería',
     },
     {
         icon: '/icons/construccion.png',
-        name: 'Construccion',
+        name: 'Construcción',
     },
     // {
     //     icon: '/icons/madera.png',

@@ -3,8 +3,13 @@ import React from 'react';
 
 export const Footer = () => {
     return(
-        <footer className="mt-[-60px] relative -z-50 flex flex-col w-full min-h-[55vh] justify-center items-center bg-red-800 text-white text-pretty">
-            <h1 className="text-5xl font-bold">Fin.</h1>
+        <footer className="mt-[-60px] p-10 pt-20 pb-12 relative -z-50 flex flex-row w-full min-h-[55vh] justify-center items-center bg-red-800 text-white text-pretty">
+            <div className='basis-9/12 bg-gray-700 w-full min-h-full'>
+
+            </div>
+            <div className='basis-3/12 bg-gray-800 w-full min-h-full'>
+
+            </div>
             <div className="social-media flex flex-row absolute inset-x-0 bottom-5 w-full justify-center text-white text-md font-medium"> 
                 <a href="https://www.instagram.com/rmconsuegrasrl/" className="mx-2 flex items-center text-pretty"  target="_blank">
                     <svg className="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="54" height="54" fill="none" viewBox="0 0 24 24">

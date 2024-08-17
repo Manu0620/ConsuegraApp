@@ -1,24 +1,52 @@
+"use client"; 
+
 import Image from "next/image";
+import React from "react";
 
 import { Category } from "@/components/category";
 import { Footer } from '@/components/footer';
 import { productos } from '@/data/productos';
 import { Menu } from "../components/menu";
 
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-0 m-0 bg-red">
       <Menu />
-      <section className="slider-container bg-cover bg-[url('/HeroMainImage.png')] mt-36 relative z-30 flex flex-row w-full min-h-[80vh] items-center bg-blue-950 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+      <section className="slider-container mt-36 relative z-30 flex flex-row w-full min-h-[80vh] items-center bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+        <Swiper
+          // install Swiper modules
+          className="min-w-full h-[80vh] m-0 p-0 border border-transparent rounded-bl-[60px] rounded-br-[30px]"
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          slidesPerView={1}
+          speed={500}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}>
 
+          <SwiperSlide>
+            <img src={'/HeroMainImage.png'} className="object-cover"/>
+          </SwiperSlide>
+          <SwiperSlide>Slide 2</SwiperSlide>
+          <SwiperSlide>Slide 3</SwiperSlide>
+          <SwiperSlide>Slide 4</SwiperSlide>
+        </Swiper>
       </section>
       
-      <section className="mt-[-60px] relative z-20 flex flex-col w-full min-h-[70vh] items-center justify-start bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+      <section className="mt-[-60px] relative z-20 flex flex-col w-full min-h-[70vh] items-center justify-start bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
 
       </section>
 
-      <section className="mt-[-60px] relative z-10 flex flex-col w-full min-h-[70vh] items-center justify-start bg-red-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-        <h1 className="pt-20 text-3xl text-red-700 font-bold m-10 text-pretty">Tenemos gran variedad de productos para ti.</h1>
+      <section className="mt-[-60px] relative z-10 flex flex-col w-full min-h-[70vh] items-center justify-center bg-red-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+        <h1 className="pt-20 text-3xl text-red-700 font-bold m-10 text-pretty text-center">Tenemos gran variedad de productos para ti.</h1>
         <Category />
       </section>
 

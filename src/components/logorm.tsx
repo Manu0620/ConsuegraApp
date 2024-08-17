@@ -12,7 +12,7 @@ export const Logo = () => {
                 <h1 className="leading-none pb-2 text-lg text-red-600 text-pretty">
                     <span className='pl-3 text-[14px] font-bold'>Grupo</span><br/>
                     <span className='leading-none text-4xl text-blue-800 text-pretty'>Consuegra</span><br/>
-                    <span className='leading-none absolute m-1 text-[8px] text-blue-800 text-pretty font-bold'>Importadores mayoristas de materiales electricos</span>
+                    <span className='leading-none absolute m-1 text-[8px] text-blue-800 text-pretty font-bold'>Importadores mayoristas de materiales eléctricos</span>
                 </h1>
             </Link>
         </div>
