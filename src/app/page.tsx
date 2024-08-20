@@ -62,7 +62,7 @@ export default function Home() {
       </section>
 
       <section className="mt-[-60px] relative z-10 flex flex-col w-full min-h-[70vh] items-center justify-center bg-red-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-        <h1 className="pt-20 text-3xl text-red-800 font-bold m-10 text-pretty text-center">Tenemos gran variedad de productos para ti.</h1>
+        <h1 className="pt-20 text-3xl text-red-800 font-bold m-10 text-pretty text-center">Tenemos gran variedad de productos <span className="text-blue-900">para ti</span>.</h1>
         <Category />
       </section>
 

@@ -13,7 +13,7 @@ export const HomeInfo = [
     },
     {
         image: '/HeroMainImage.png',
-        title: 'Experiencia y confianza en cada cucursal.',
+        title: 'Experiencia y confianza en cada sucursal.',
         body: 'En Grupo Consuegra, sabemos que cada proyecto es único. Con sucursales especializadas en electrodomésticos, plomería y ferretería, y una línea de productos fabricados por nosotros, estamos equipados para satisfacer todas tus necesidades. Nuestro equipo de expertos está listo para ofrecerte asesoramiento personalizado y soluciones a medida. ¡Visítanos y comprueba la diferencia!',
         isReverse: false
     }
