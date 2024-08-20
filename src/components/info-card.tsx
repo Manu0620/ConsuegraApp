@@ -21,7 +21,7 @@ export const InfoCard = (props: Props) => {
                         <p className="text-sm text-center pt-2 font-medium">{props.body}</p>
                     </div>
                     <div className="flex basis-5/12 ">
-                        <img className="object-cover" src={props.image} alt="..."/>
+                        <img key={props.title} className="object-cover" src={props.image} alt="..."/>
                     </div>
                 </div>
             :
@@ -31,7 +31,7 @@ export const InfoCard = (props: Props) => {
                         <p className="text-sm pt-2 font-medium">{props.body}</p>
                     </div>
                     <div className="flex basis-5/12 ">
-                        <img className="object-cover" src={props.image} alt="..."/>
+                        <img key={props.title} className="object-cover" src={props.image} alt="..."/>
                     </div>
                 </div>
 
