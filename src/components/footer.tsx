@@ -8,7 +8,7 @@ export const Footer = () => {
             <div className='flex basis-4/6 w-full'>
 
             </div>
-            <div className='flex flex-col relative basis-4/12 m-10 w-full text-pretty justify-center items-center'>
+            <div className='flex flex-col relative basis-4/12 m-10 w-full text-pretty  items-center mobile:basis-full sm:basis-full md:basis-7/12 lg:basis-4/12'>
                 <h1 className='flex flex-col text-start text-sm font-thin'>Ponte en contacto<span className='font-bold text-2xl'>CON NOSOTROS.</span></h1>
                 <form action="" className='flex flex-col px-14 m-5 w-full justify-center items-center'> 
                     <div className='flex flex-row w-full justify-center items-center'>
