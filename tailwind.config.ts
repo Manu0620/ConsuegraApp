@@ -18,6 +18,7 @@ const config = {
       },
     },
     screens: {
+      'mobilesm': '375px',
       'mobile': '480px',
       'sm': '640px',
       'md': '768px',
