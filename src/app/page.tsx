@@ -8,13 +8,15 @@ import { Footer } from '@/components/footer';
 import { productos } from '@/data/productos';
 import { Menu } from "../components/menu";
 
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { InfoCard } from "@/components/info-card";
+import { HomeInfo } from "@/components/constants/info-cards";
 
 
 export default function Home() {
@@ -24,13 +26,16 @@ export default function Home() {
       <section className="slider-container mt-36 relative z-30 flex flex-row w-full items-center bg-white border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
         <Swiper
           // install Swiper modules
-          className="min-w-full min-h-fit mt-8 border border-transparent rounded-bl-[60px] rounded-br-[30px]"
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          className="min-w-full min-h-fit border border-transparent rounded-bl-[60px] rounded-br-[30px] "
+          modules={[EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={1}
           speed={500}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}>
+          effect={'fade'}
+          autoplay={{
+            delay: 5000, 
+            disableOnInteraction: false,
+          }}
+          pagination={{ clickable: true }}>
 
           <SwiperSlide>
             <img src={'/HeroMainImage.png'} className="object-cover"/>
@@ -39,20 +44,25 @@ export default function Home() {
             <img src={'/rm-hero.png'} className="object-cover"/>
           </SwiperSlide>
           <SwiperSlide>
-            <img src={'/moca-hero.png'} className="object-cover"/>
+            <img src={'/colorado-hero.png'} className="object-cover"/>
           </SwiperSlide>
           <SwiperSlide>
-            <img src={'/colorado-hero.png'} className="object-cover"/>
+            <img src={'/moca-hero.png'} className="object-cover"/>
           </SwiperSlide>
         </Swiper>
       </section>
       
-      <section className="mt-[-60px] relative z-20 flex flex-col w-full min-h-[70vh] items-center justify-start bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-
+      <section className="mt-[-60px] pb-10 relative z-20 flex flex-col w-full min-h-[70vh] items-center justify-start bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
+      <h1 className="pt-20 text-3xl text-blue-900 font-bold m-10 text-pretty text-center">Nuestro compromiso es <span className="text-red-800">contigo</span>.</h1>
+        {
+          HomeInfo.map(info => (
+            <InfoCard image={info.image} title={info.title} body={info.body} isReverse={info.isReverse} />
+          ))
+        }
       </section>
 
       <section className="mt-[-60px] relative z-10 flex flex-col w-full min-h-[70vh] items-center justify-center bg-red-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-        <h1 className="pt-20 text-3xl text-red-700 font-bold m-10 text-pretty text-center">Tenemos gran variedad de productos para ti.</h1>
+        <h1 className="pt-20 text-3xl text-red-800 font-bold m-10 text-pretty text-center">Tenemos gran variedad de productos para ti.</h1>
         <Category />
       </section>
 
