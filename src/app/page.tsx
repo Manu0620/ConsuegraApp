@@ -53,10 +53,10 @@ export default function Home() {
       </section>
       
       <section className="mt-[-60px] pb-10 relative z-20 flex flex-col w-full min-h-[70vh] items-center justify-start bg-blue-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
-      <h1 className="pt-20 text-3xl text-blue-900 font-bold m-10 text-pretty text-center">Nuestro compromiso es <span className="text-red-800">contigo</span>.</h1>
+        <h1 className="pt-20 text-3xl text-blue-900 font-bold m-10 text-pretty text-center">Nuestro compromiso es <span className="text-red-800">contigo</span>.</h1>
         {
-          HomeInfo.map(info => (
-            <InfoCard key={info.title} image={info.image} title={info.title} body={info.body} isReverse={info.isReverse} />
+          HomeInfo.map((info, index) => (
+            <InfoCard key={index} image={info.image} title={info.title} body={info.body} isReverse={info.isReverse} />
           ))
         }
       </section>
