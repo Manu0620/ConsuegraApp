@@ -56,7 +56,7 @@ export default function Home() {
       <h1 className="pt-20 text-3xl text-blue-900 font-bold m-10 text-pretty text-center">Nuestro compromiso es <span className="text-red-800">contigo</span>.</h1>
         {
           HomeInfo.map(info => (
-            <InfoCard image={info.image} title={info.title} body={info.body} isReverse={info.isReverse} />
+            <InfoCard key={info.title} image={info.image} title={info.title} body={info.body} isReverse={info.isReverse} />
           ))
         }
       </section>
