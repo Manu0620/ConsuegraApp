@@ -1,7 +1,7 @@
 export const HomeInfo = [
     {
         image: '/HeroMainImage.png',
-        title: 'Innovación y Calidad en cada producto.',
+        title: 'Innovación y calidad en cada producto.',
         body: 'En Grupo Consuegra, combinamos décadas de experiencia con tecnología de vanguardia para ofrecerte productos de electrodomésticos, plomería y ferretería de la más alta calidad. Fabricamos parte de nuestros productos para garantizar la excelencia y la durabilidad que esperas. Con varias sucursales a tu disposición, estamos aquí para brindarte un servicio excepcional y soluciones que superen tus expectativas.',
         isReverse: false
     },
