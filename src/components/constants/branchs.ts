@@ -4,6 +4,7 @@ export const Branchs = [
         name: 'RM Consuegra', 
         phone: '(809) 337-2526',
         location: 'Calle Jaime Dilone #33, Ortega, Santiago',
+        short_location: 'Ortega, Santiago',
         url: '/sucursales/rm',
         extensions: [
             {
@@ -15,11 +16,6 @@ export const Branchs = [
                 name: 'Domingo Consuegra',
                 number: '#236', 
                 department: 'Ferreteria RM'
-            },
-            {
-                name: 'Betzaida Escano',
-                number: '#238', 
-                department: 'Credito y Cobros'
             }
         ]
     },
@@ -28,6 +24,7 @@ export const Branchs = [
         name: 'Ferrecentro Consuegra', 
         phone: '(809) 612-6464',
         location: 'Calle Penetracion, Colorado, Santiago',
+        short_location: 'Colorado, Santiago',
         url: '/sucursales/ferrecentro',
         extensions: [
             {
@@ -39,11 +36,6 @@ export const Branchs = [
                 name: 'Domingo Consuegra',
                 number: '#236', 
                 department: 'Ferreteria RM'
-            },
-            {
-                name: 'Betzaida Escano',
-                number: '#238', 
-                department: 'Credito y Cobros'
             }
         ]
     },
@@ -52,6 +44,7 @@ export const Branchs = [
         name: 'Electroplomeria Consuegra', 
         phone: '(809) 823-3030',
         location: 'Av. Imbert, Calle 16 de Agosto, Moca',
+        short_location: 'Moca, Espaillat',
         url: '/sucursales/moca',
         extensions: [
             {
@@ -63,11 +56,6 @@ export const Branchs = [
                 name: 'Domingo Consuegra',
                 number: '#236', 
                 department: 'Ferreteria RM'
-            },
-            {
-                name: 'Betzaida Escano',
-                number: '#238', 
-                department: 'Credito y Cobros'
             }
         ]
     },
@@ -76,6 +64,7 @@ export const Branchs = [
         name: 'Ferreteria Consuegra', 
         phone: '(809) 539-2121',
         location: 'Calle Gratereaux, Constanza',
+        short_location: 'Constanza, La Vega',
         url: '/sucursales/constanza',
         extensions: [
             {
@@ -87,11 +76,6 @@ export const Branchs = [
                 name: 'Domingo Consuegra',
                 number: '#236', 
                 department: 'Ferreteria RM'
-            },
-            {
-                name: 'Betzaida Escano',
-                number: '#238', 
-                department: 'Credito y Cobros'
             }
         ]
     },
@@ -100,6 +84,7 @@ export const Branchs = [
         name: 'Electroplomeria Consuegra', 
         phone: '(809) 571-9392',
         location: 'Kilometro 5, Cabarete',
+        short_location: 'Cabarete, Puerto Plata',
         url: '/sucursales/cabarete',
         extensions: [
             {
@@ -111,11 +96,6 @@ export const Branchs = [
                 name: 'Domingo Consuegra',
                 number: '#236', 
                 department: 'Ferreteria RM'
-            },
-            {
-                name: 'Betzaida Escano',
-                number: '#238', 
-                department: 'Credito y Cobros'
             }
         ]
     },
@@ -124,6 +104,7 @@ export const Branchs = [
         name: 'Ferreteria Consuegra', 
         phone: '(809) 823-1331',
         location: 'Calle Duarte, Las Guazumas, Espaillat',
+        short_location: 'Guazumas, Espaillat',
         url: '/sucursales/guazumas',
         extensions: [
             {
@@ -135,11 +116,6 @@ export const Branchs = [
                 name: 'Domingo Consuegra',
                 number: '#236', 
                 department: 'Ferreteria RM'
-            },
-            {
-                name: 'Betzaida Escano',
-                number: '#238', 
-                department: 'Credito y Cobros'
             }
         ]
     }

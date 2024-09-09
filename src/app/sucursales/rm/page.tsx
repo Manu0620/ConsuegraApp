@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 
-import {Menu} from "@/components/menu";
+import { Menu } from "@/components/menu";
 import { Footer } from '@/components/footer';
 
 export default function RMConsuegra() {
@@ -15,7 +15,7 @@ export default function RMConsuegra() {
       <section className="mt-[-60px] relative z-20 flex flex-col w-full min-h-[60vh] items-center bg-gray-100 border border-transparent rounded-bl-[60px] rounded-br-[30px]">         
         <div className="mt-28 mb-10 flex flex-row w-3/4 bg-white shadow-xl border border-transparent rounded-[25px] text-pretty">
             <div className="flex flex-col relative basis-1/2 p-10 justify-center items-center">
-              <h1 className="text-3xl text-red-700 font-bold m-3">Contacto</h1>
+              <h1 className="text-3xl text-red-700 font-medium m-3">Contacto</h1>
               <div className="flex flex-row m-3 w-full">
                   <div className="flex flex-col basis-1/3 justify-center items-center mx-4 text-center">
                     <span className="p-5 mb-3 text-red-700 bg-red-100 shadow-lg rounded-full">
@@ -70,7 +70,7 @@ export default function RMConsuegra() {
             </div>
         </div>
 
-        <h1 className="text-3xl text-red-700 font-bold my-5 text-pretty">Ubicación.</h1>
+        <h1 className="text-3xl text-red-700 font-medium my-5 text-pretty">Ubicación.</h1>
         <iframe className="w-full border border-transparent rounded-bl-[60px] rounded-br-[30px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.665907977616!2d-70.60689184033586!3d19.383613582004067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1d1c3fad50f73%3A0x5130d828e8d13ffc!2sRM%20Consuegra!5e0!3m2!1ses!2sdo!4v1723669805852!5m2!1ses!2sdo" width="800" height="600"   loading="lazy"></iframe>
       </section>
       <Footer />
