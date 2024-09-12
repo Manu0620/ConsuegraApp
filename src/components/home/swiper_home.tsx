@@ -13,7 +13,7 @@ export const SwiperHome = () => {
         <>
             <Swiper
                 // install Swiper modules
-                className="min-w-full min-h-fit mt-10 border border-transparent rounded-bl-[60px] rounded-br-[30px] "
+                className="min-w-full min-h-fit mt-10"
                 modules={[EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]}
                 slidesPerView={1}
                 speed={1000}

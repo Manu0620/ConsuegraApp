@@ -10,7 +10,7 @@ interface Props {
 
 export const MenuItem = (props: Props) => {
     return(
-        <li className='flex mx-3 justify-center items-center hover:text-black/75 text-white text-pretty'>
+        <li className='flex mx-3 justify-center items-center hover:text-red-100 text-white text-pretty'>
             {
                 props.blank
                 ? 

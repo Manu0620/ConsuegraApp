@@ -24,7 +24,7 @@ export const MenuItems = [
         name: "Empleos",
         icon: "",
         hasIcon: false,
-        url: "/contacto#empleo",
+        url: "/empleo",
     },
     {
         name: "Contacto",

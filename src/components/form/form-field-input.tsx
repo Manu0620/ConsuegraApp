@@ -1,3 +1,17 @@
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+
 
 interface InputProps {
     label?: string,
@@ -8,7 +22,7 @@ interface InputProps {
     name: string,
 }
 
-export const Input = (props: InputProps) => {
+export const FormFieldInput = (props: InputProps) => {
   return (
     <>
         <span className="flex flex-col w-full">

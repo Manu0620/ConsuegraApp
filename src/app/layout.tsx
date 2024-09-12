@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { GeistSans } from 'geist/font/sans';
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
 
-const inter = Rubik({ subsets: ["latin"] });
+const inter = GeistSans;
 
 export const metadata: Metadata = {
   title: "Consuegra App",
@@ -19,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
