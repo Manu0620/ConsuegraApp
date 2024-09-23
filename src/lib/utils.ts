@@ -20,3 +20,17 @@ export const contactFormSchema = z.object({
     { message: "El mensaje debe tener al menos 20 caracteres" }
   ),
 })
+
+//Login Form Schema
+export const loginFormSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8,
+    { message: "La contraseña debe tener al menos 8 caracteres" }
+  ),
+})
+
+
+//Convertidor de texto a formato de moneda en pesos dominicanos
+export function currencyFormat(num: number) {
+  return "RD$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}

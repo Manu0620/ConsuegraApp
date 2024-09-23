@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { GeistSans } from 'geist/font/sans';
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
+import { Footer } from "@/components/footer";
+import { Menu } from "@/components/menu";
 
 const inter = GeistSans;
 
@@ -18,10 +20,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+  return (  
     <html lang="en">
       <body className={inter.className}>
+        <Menu />
         {children}
+        <Footer />
         <Toaster />
       </body>
     </html>

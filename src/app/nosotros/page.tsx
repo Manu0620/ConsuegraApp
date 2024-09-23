@@ -9,10 +9,10 @@ import { Principle } from "@/components/nosotros/principle";
 export default function Nosotros() {
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
-      <Menu />
+      
       <section className="hero-nosotros mt-36 relative shadow-md z-30 flex flex-row items-center w-full min-h-fit bg-white overflow-hidden"> 
         <img src={'/sobre-nosotros.png'} alt="..." className="mt-10 object-cover" />
-        <h1 className="absolute left-1/4 text-5xl flex flex-col text-white font-bold my-5 text-pretty leading-none mobilesm:text-[16px] mobile:text-lg sm:text-xl md:text-2xl lg:text-5xl"><span className="font-thin text-2xl leading-none mobilesm:text-[8px] mobile:text-[12px] sm:text-sm md:text-xl lg:text-2xl">Sobre</span>NOSOTROS.</h1>
+        <h1 className="absolute left-1/4 text-5xl flex flex-col text-white font-bold text-pretty leading-none mobilesm:text-[16px] mobile:text-lg sm:text-xl md:text-2xl lg:text-5xl"><span className="font-thin text-2xl leading-none mobilesm:text-[8px] mobile:text-[12px] sm:text-sm md:text-xl lg:text-2xl">Sobre</span>NOSOTROS.</h1>
       </section>
 
       <section className="shadow-md flex flex-col p-12 w-full min-h-[60vh] items-center bg-gray-100"> 
@@ -56,7 +56,7 @@ export default function Nosotros() {
             }         
         </div>
       </section>
-      <Footer /> 
+       
     </main>
   );
 }

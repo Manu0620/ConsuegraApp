@@ -14,11 +14,11 @@ export default function RMConsuegra() {
   
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
-      <Menu />
+      
       <section className="hero-rm bg-cover bg-top bg-[url('/rm-hero.png')] mt-36 flex flex-row w-full h-[60vh] max-h-[65vh] items-center bg-blue-950"> </section>
       
       <section className="flex flex-col bg-white w-full space-y-8 justify-center items-center py-12 px-6">
-        <img className="border-b-2 border-red-700 shadow-xl object-cover rounded-3xl " src={'/sucursales/fachadas/rm-fachada.jpg'} alt="..." />
+        <img className="drop-shadow-xl contrast-125 border-b-2 border-red-700 shadow-xl object-cover rounded-3xl " src={'/sucursales/fachadas/rm-fachada.jpg'} alt="..." />
         <h1 className="text-5xl text-red-700 font-bold text-pretty">RM Consuegra</h1>
         <div className="flex flex-col border-t-2 rounded-br-3xl rounded-bl-3xl border-red-700 text-pretty pt-6 space-y-12 bg-red-50 items-center justify-center lg:w-3/4 md:w-10/12 sm:w-full mobile:w-full mobilesm:w-full">
             
@@ -76,7 +76,7 @@ export default function RMConsuegra() {
         <h1 className="text-4xl text-red-700 font-bold pb-12 text-pretty">Ubicación</h1>
         <iframe className="w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.665907977616!2d-70.60689184033586!3d19.383613582004067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1d1c3fad50f73%3A0x5130d828e8d13ffc!2sRM%20Consuegra!5e0!3m2!1ses!2sdo!4v1723669805852!5m2!1ses!2sdo" width="800" height="600"   loading="lazy"></iframe>
       </section>
-      <Footer />
+      
     </main>
   );
 }

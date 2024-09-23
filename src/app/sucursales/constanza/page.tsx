@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function ElectroPlConstanza() {
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
-      <Menu />
+      
       <section className="hero-constanza bg-cover bg-top bg-[url('/constanza-hero.png')] mt-36 relative z-30 flex flex-row w-full h-[50vh] items-center bg-blue-950 border border-transparent rounded-bl-[60px] rounded-br-[30px]"> 
       
       </section>
@@ -73,7 +73,7 @@ export default function ElectroPlConstanza() {
         <h1 className="text-3xl text-red-700 font-bold my-5 text-pretty">Ubicación.</h1>
         <iframe className="w-full border border-transparent rounded-bl-[60px] rounded-br-[30px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.4913141844313!2d-70.74682182401568!3d18.909635057172725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb015b3a3147f75%3A0x98cf92d82331544f!2sElectro%20Plomer%C3%ADa%20Constanza!5e0!3m2!1ses!2sdo!4v1723669091016!5m2!1ses!2sdo" width="800" height="600"   loading="eager"></iframe>
       </section>
-      <Footer />
+      
     </main>
   );
 }

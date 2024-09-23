@@ -1,37 +1,67 @@
 
 
-export const MenuItems = [
+export const menuItems = [
     {
-        name: "Productos",
-        icon: "",
+        title: "Productos",
         hasIcon: false,
-        url: "/documents/catalogo-productos-consuegra.pdf",
-        blank: true,
+        href: "/productos",
+        listItems: [
+            {
+                title: 'Nuestros productos',
+                href: '/productos',
+                description: 'Explore nuestros productos, acceda a consulta, destacado y mas.',
+            },
+            {
+                title: 'Catalogo',
+                href: '/documents/catalogo-productos-consuegra.pdf',
+                description: 'Descargue nuestro catalogo de productos.',
+                blank: true,
+            },
+        ],
+        categories: [
+            {
+                title: 'Categorias',
+                listItems: [
+                    {
+                        title: 'Categorias',
+                        href: '/productos',
+                        description: 'Explore nuestros productos, acceda a consulta, destacado y mas.',
+                    },
+                    {
+                        title: 'Catalogo',
+                        href: '/documents/catalogo-productos-consuegra.pdf',
+                        description: 'Descargue nuestro catalogo de productos.',
+                        blank: true,
+                    },
+                ],
+            },
+        ],
+        blank: false,
     },
     {
-        name: "Nosotros",
-        icon: "",
+        title: "Nosotros",
         hasIcon: false,
-        url: "/nosotros",
+        href: "/nosotros",
     },
     {
-        name: "menu-logo",
+        title: "menu-logo",
         icon: "/LogoMono.png",
         hasIcon: false,
-        url: "/",
+        href: "/",
     },
     {
-        name: "Empleos",
-        icon: "",
+        title: "Empleos",
         hasIcon: false,
-        url: "/empleo",
+        href: "/empleo",
     },
     {
-        name: "Contacto",
+        title: "Contacto",
         hasIcon: false,
-        url: "/contacto",
+        href: "/contacto",
     },
 ]
+
+
 
 
 

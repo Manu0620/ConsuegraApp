@@ -15,7 +15,7 @@ import { productos } from '@/data/productos';
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen items-center p-0 m-0">
-      <Menu />
+      
       <section 
           className="swiper-container mt-36 flex flex-row w-full items-center shadow-md bg-white"> 
           <SwiperHome />
@@ -42,7 +42,7 @@ export default function Home() {
           {productos.map((producto, index) => (
               <div key={index} className="card px-16 py-6 flex flex-col basis-2/12 w-full h-full items-center justify-center text-pretty">
                 <Image 
-                  className="border border-transparent rounded-full shadow-md max-h-[200px] max-w-[200px] object-contain bg-white"
+                  className="border border-transparent contrast-125 rounded-full shadow-md max-h-[200px] max-w-[200px] object-contain bg-white"
                   key={producto.id} 
                   src={producto.portrait} 
                   alt='...' 
@@ -58,7 +58,7 @@ export default function Home() {
             ))}
         </div>
       </section>
-      <Footer />
+      
     </main>
   );
 }

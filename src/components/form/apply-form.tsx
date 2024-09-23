@@ -48,7 +48,6 @@ const formSchema = z.object({
   ),
   email: z.string().email(),
   jobs: z.string(),
-  cv: z.string(),
 })
 
 export function ApplyForm() {
@@ -60,6 +59,7 @@ export function ApplyForm() {
 
     const onSubmit = form.handleSubmit((data) => {
       console.log(data)
+      
       toast({
         title: "Exito !",
         description: (
@@ -114,8 +114,8 @@ export function ApplyForm() {
             )}
           />
           
-          <div className="flex flex-row space-x-3 h-fit items-center py-2">
-            <div className="flex flex-row space-x-2">
+          <div className="flex flex-row w-full h-fit items-center ">
+            <div className="flex flex-row space-x-2 grow">
               <FormField
                 control={form.control}
                 name="jobs"
@@ -123,7 +123,7 @@ export function ApplyForm() {
                   <FormItem>
                       <FormLabel className="text-red-800 font-bold" >Puesto</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger className="w-[280px] border-red-700 hover:bg-red-700/25 text-red-800 font-medium rounded-xl">
+                        <SelectTrigger className="border-red-700 hover:bg-red-700/25 text-red-800 font-medium rounded-xl">
                           <SelectValue placeholder="Puesto al que aplica" />
                         </SelectTrigger>
                         <SelectContent  className="rounded-xl text-red-800 bg-white">
@@ -156,20 +156,21 @@ export function ApplyForm() {
                   render={({ field }) => (
                     <FormItem>
                       <Label className="text-red-800 font-bold">Adjuntar CV</Label>
-                      <Input type="file" accept=".pdf" className="border-red-700 focus:bg-red-700/25 text-red-800 font-medium rounded-xl"/>
+                      <Input type="file" accept=".pdf"  required className="grow border-red-700 focus:bg-red-700/25 text-red-800 font-medium rounded-xl"/>
                       <FormMessage className="text-red-700" />
                     </FormItem>
                   )}
                 />
-            </div>
-            
+            </div>            
           </div>
           <Button 
               type="submit"
-              className="text-red-700 bg-red-700/25 font-bold rounded-xl hover:bg-red-700 hover:text-white hover:scale-105 transition ease-in-out duration-200">
+              className="text-red-700 bg-red-700/25 font-bold rounded-xl hover:bg-red-700 hover:text-white hover:scale-110 transition ease-in-out duration-200">
                 <IoIosSend /> Aplicar
-            </Button>
+          </Button>
         </form>
       </Form>
     )
   }
+
+

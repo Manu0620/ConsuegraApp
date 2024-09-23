@@ -10,10 +10,10 @@ export default function Empleo() {
     
     return(
         <main className="flex min-h-screen flex-col items-center p-0 bg-red">
-            <Menu />
+            
             <section 
-                className="hero-nosotros bg-red-50 mt-36 relative shadow-md flex flex-row items-center w-full min-h-80 overflow-hidden"> 
-                <h1 className="absolute flex flex-col ml-28 text-red-800 font-bold text-pretty leading-none mobilesm:text-2xl mobile:text-2xl sm:text-3xl md:text-4xl lg:text-4xl">Empleate con nosotros</h1>
+                className="hero-nosotros flex flex-row bg-red-50 mt-48 shadow-md text-center items-center w-full min-h-60 overflow-hidden"> 
+                <h1 className="flex flex-col ml-28 text-red-800 font-bold text-pretty leading-none mobilesm:text-2xl mobile:text-2xl sm:text-3xl md:text-4xl lg:text-4xl">Empleate con nosotros</h1>
             </section>
             <section className="empleo flex flex-col bg-white relative p-12 shadow-md w-full min-h-[60vh] items-center"> 
                 <div 
@@ -45,7 +45,7 @@ export default function Empleo() {
                     </div>
                 </div>
             </section>
-            <Footer />
+            
         </main>
     );
 }
