@@ -12,7 +12,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { menuItems } from "./constants/menu-items"
-import { MdIcecream } from "react-icons/md"
 import { FaBookOpen } from "react-icons/fa"
 import { BsWindowSidebar } from "react-icons/bs";
 
@@ -24,42 +23,42 @@ export const MenuItems = () => {
             <NavigationMenuList className='pt-14 flex flex-row text-white text-pretty lg:text-sm md:text-md sm:text-sm mobile:text-sm mobilesm:text-[12px]'>
                 {menuItems.map((item, index) => ( 
                     <NavigationMenuItem key={index}>
-                            {item.icon || item.title === 'menu-logo' ? (
-                                <Link href={item.href} className="flex px-2 items-center cursor-pointer text-center hover:scale-110 transition ease-in-out duration-200">
-                                    <img className='flex w-14 mx-1' src={item.icon} alt='...' />
-                                </Link>
-                            ) : item.listItems ? (
-                                <div >
-                                    <NavigationMenuTrigger className="p-0 px-2  m-0">
-                                        {item.title}
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent className="bg-red-50 w-fit text-sm text-red-800">
-                                        <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[1fr_1fr]">      
-                                            {item.listItems.map((listItem, index) => (
-                                                <NavigationMenuLink asChild key={index}>
-                                                    <Link
-                                                        className="flex h-full w-full select-none p-3 flex-col text-start justify-center rounded-xl hover:bg-red-800/25"
-                                                        href={listItem.href}
-                                                        target={listItem.blank ? "_blank" : undefined}
-                                                    >
-                                                        <div className="mb-2 mt-4 text-md font-bold">
-                                                            {listItem.title}
-                                                        </div>
-                                                        <p className="text-[12px] leading-tight text-black">
-                                                            {listItem.description}
-                                                        </p>
-                                                    </Link>
-                                                </NavigationMenuLink>
-                                            ))}
-                                            
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </div>
-                            ) : (
-                                <Link href={item.href} className="flex px-2 items-center cursor-pointer text-center hover:scale-110 transition ease-in-out duration-200">
-                                    {item.title}
-                                </Link>
-                            )}
+                      {item.icon || item.title === 'menu-logo' ? (
+                          <Link href={item.href} className="flex px-2 items-center cursor-pointer text-center hover:scale-110 transition ease-in-out duration-200">
+                              <img className='flex w-14 mx-1' src={item.icon} alt='...' />
+                          </Link>
+                      ) : item.listItems ? (
+                          <div >
+                              <NavigationMenuTrigger className="flex text-md px-2 items-center cursor-pointer text-center hover:scale-110 transition ease-in-out duration-200">
+                                  {item.title}
+                              </NavigationMenuTrigger>
+                              <NavigationMenuContent className="bg-red-50 w-fit text-sm text-red-800">
+                                  <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[1fr_1fr]">      
+                                      {item.listItems.map((listItem, index) => (
+                                          <NavigationMenuLink asChild key={index}>
+                                              <Link
+                                                  className="flex h-full w-full select-none p-3 flex-col text-start justify-center rounded-xl hover:bg-red-800/25"
+                                                  href={listItem.href}
+                                                  target={listItem.blank ? "_blank" : undefined}
+                                              >
+                                                  <div className="mb-2 mt-4 text-md font-bold">
+                                                      {listItem.title}
+                                                  </div>
+                                                  <p className="text-[12px] leading-tight text-black">
+                                                      {listItem.description}
+                                                  </p>
+                                              </Link>
+                                          </NavigationMenuLink>
+                                      ))}
+                                      
+                                  </ul>
+                              </NavigationMenuContent>
+                          </div>
+                      ) : (
+                          <Link href={item.href} className="flex px-2 items-center cursor-pointer text-center hover:scale-110 transition ease-in-out duration-200">
+                              {item.title}
+                          </Link>
+                      )}
                     </NavigationMenuItem>  
                 ))}
             </NavigationMenuList>

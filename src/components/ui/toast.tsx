@@ -30,7 +30,7 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        success: "border-green-700 bg-green-700/75 text-md text-white rounded-3xl",
+        success: "border-green-800 bg-green-500 text-md text-black rounded-3xl",
         destructive:
           "destructive group text-md border-destructive bg-destructive/75 text-destructive-foreground rounded-3xl",
       },
@@ -95,7 +95,7 @@ const ToastTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <ToastPrimitives.Title
       ref={ref}
-      className={cn("text-md font-bold", className)}
+      className={cn("text-md font-semibold", className)}
       {...props}
     />
 ))

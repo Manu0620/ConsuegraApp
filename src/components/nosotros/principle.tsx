@@ -29,7 +29,7 @@ export const Principle = (props: Props) => {
                             </div>
                         </div>
                         <div className="flex flex-col items-center lg:w-1/2 md:w-1/2 sm:w-full mobile:w-full mobilesm:w-full">
-                            <img className="flex object-cover shadow-lg rounded-3xl lg:w-10/12 md:w-10/12 sm:w-full mobile:w-full mobilesm:w-full" src={props.image} alt={props.title}/>
+                            <img className="flex object-cover drop-shadow-xl rounded-3xl lg:w-10/12 md:w-10/12 sm:w-full mobile:w-full mobilesm:w-full" src={props.image} alt={props.title}/>
                         </div>
                     </div> 
                 ) : (

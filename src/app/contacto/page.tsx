@@ -1,7 +1,6 @@
 "use client";
 
-import { Menu } from "@/components/menu";
-import { Footer } from "@/components/footer";
+
 import { ContactForm } from "@/components/form/contact-form";
 import { BranchCard } from "@/components/branch-card";
 import { ApplyForm } from "@/components/form/apply-form";
@@ -26,7 +25,7 @@ export default function Contacto() {
                     <div className="flex flex-col text-pretty space-y-5 lg:w-1/2 lg:p-16 md:w-full md:px-16 sm:w-full mobile:w-full mobilesm:w-full">
                         <h1 
                            className="flex text-white font-bold text-pretty mobilesm:text-xl mobile:text-xl sm:text-3xl md:text-4xl lg:text-4xl">
-                            Contactanos
+                            Contáctenos
                         </h1>
                         <p 
                             className="text-white/90 font-light lg:text-[16px] md:text-md sm:text-sm mobile:text-sm mobilesm:text-sm"> 

@@ -5,6 +5,9 @@ import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Menu } from "@/components/menu";
 
+import { CartProvider } from "@/components/cart/cart-context"; 
+import { WhatsAppButton } from "@/components/whatsapp-button";
+
 const inter = GeistSans;
 
 export const metadata: Metadata = {
@@ -16,18 +19,25 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (  
-    <html lang="en">
-      <body className={inter.className}>
-        <Menu />
-        {children}
-        <Footer />
-        <Toaster />
-      </body>
-    </html>
+      <CartProvider>
+            <html lang="en">
+                <body className={inter.className}>
+                    <Menu />
+                    {children}
+                    <Footer />
+                    <Toaster />
+                    <WhatsAppButton 
+                      className="fixed bottom-5 left-5"
+                      phone="+18093372526"
+                      message="Hola, vengo desde su pagina pagina https://consuegra-app.vercel.app/"/>
+                </body>
+            </html>
+        </CartProvider>
   );
 }

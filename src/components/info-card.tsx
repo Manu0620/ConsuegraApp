@@ -22,7 +22,7 @@ export const InfoCard = (props: Props) => {
                         <p className="text-sm text-center text-gray-700 pt-2 font-normal lg:text-md md:text-md sm:text-[14px] mobile:text-[12px] mobilesm:text-[12px]">{props.body}</p>
                     </div>
                     <div className="flex basis-5/12 ">
-                        <img className="object-cover" src={props.image} alt="..."/>
+                        <img className="contrast-125 object-cover" src={props.image} alt="..."/>
                     </div>
                 </div>
             :
@@ -33,7 +33,7 @@ export const InfoCard = (props: Props) => {
                         <p className="text-sm text-gray-700 pt-2 font-normal lg:text-sm md:text-md sm:text-[14px] mobile:text-[12px] mobilesm:text-[12px]">{props.body}</p>
                     </div>
                     <div className="flex basis-5/12">
-                        <img className="object-cover" src={props.image} alt="..."/>
+                        <img className="contrast-125 object-cover" src={props.image} alt="..."/>
                     </div>
                 </div>
             }

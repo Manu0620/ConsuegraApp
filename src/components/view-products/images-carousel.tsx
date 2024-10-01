@@ -31,7 +31,7 @@ export function ProductCarousel(props: CarouselProps) {
                 <CarouselItem key={index}>
                     <Card>
                         <CardContent className="flex m-0 aspect-square items-center justify-center">
-                            <img src={image} alt="Product" className="contrast-125 self-center max-h-fit object-contain" />
+                          <img src={image} alt="Product" className="contrast-125 drop self-center max-h-fit object-contain" />
                         </CardContent>
                     </Card>
                 </CarouselItem>

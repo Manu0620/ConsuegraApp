@@ -4,11 +4,10 @@ import Image from "next/image";
 import React from "react";
 
 import { Category } from "@/components/category";
-import { Footer } from '@/components/footer';
-import { Menu } from "../components/menu";
 import { InfoCard } from "@/components/info-card";
 import { HomeInfo } from "@/components/constants/info-cards";
-import { SwiperHome } from "@/components/home/swiper_home";
+import { Swipper } from "@/components/home/swiper_home";
+import { homeSlides } from "@/components/constants/home-slides";
 
 import { productos } from '@/data/productos';
 
@@ -17,8 +16,8 @@ export default function Home() {
     <main className="flex flex-col min-h-screen items-center p-0 m-0">
       
       <section 
-          className="swiper-container mt-36 flex flex-row w-full items-center shadow-md bg-white"> 
-          <SwiperHome />
+          className="swiper-container mt-36 flex flex-row w-full items-center bg-white border-b-2 border-red-800"> 
+          <Swipper slides={homeSlides} />
       </section>
 
       <section className="flex flex-col py-12 px-6 w-full min-h-[70vh] text-pretty shadow-md items-center justify-start bg-white"> 

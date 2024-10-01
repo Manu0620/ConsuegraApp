@@ -4,15 +4,12 @@ import { Menu } from "@/components/menu";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
 import { productos } from "@/data/productos";
-
 import { ProductCard } from "@/components/view-products/product-card";
+import { FiltersForm } from "@/components/view-products/filters-form";
+import { useState } from "react";   
 
 
 export default function Products() {
-
-    const addCart = () => {
-        console.log('Producto agregado al carrito');
-    }
 
     return(
         <main className="flex min-h-screen flex-col items-center p-0 bg-red">
@@ -25,16 +22,20 @@ export default function Products() {
             <section 
                 className="product-container flex flex-col bg-white border-b border-t border-red-700 w-full min-h-[60vh] items-start"> 
                 <div 
-                    className="filters-container flex flex-row bg-red-50 border-r border-red-700 text-start py-12 px-52 w-full">
-                    <h1 className="text-red-800 font-bold text-3xl">Filtros</h1>
-                    
+                    className="filters-container flex flex-col bg-red-50 border-r border-red-700 text-start py-12 px-6 w-full ">
+                    {/* <h1 className="text-red-800 font-semibold text-3xl self-center pb-3">Búsqueda</h1> */}
+                    <div className="flex flex-col w-full">
+                        <FiltersForm />
+                        <div className="flex flex-row">
+
+                        </div>
+                    </div>
                 </div>
                 <div className="product-list flex flex-row flex-wrap py-12 px-6 justify-center w-full">
                     {productos.map((product, index) => (
                         <ProductCard 
                             key={index}  
                             id={product.id.toString()} 
-                            addCart={() => addCart()}
                             portrait={product.portrait} 
                             name={product.name} 
                             price={product.price} 

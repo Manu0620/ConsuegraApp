@@ -1,5 +1,4 @@
 
-
 export const menuItems = [
     {
         title: "Productos",
@@ -7,7 +6,7 @@ export const menuItems = [
         href: "/productos",
         listItems: [
             {
-                title: 'Nuestros productos',
+                title: 'Productos destacados',
                 href: '/productos',
                 description: 'Explore nuestros productos, acceda a consulta, destacado y mas.',
             },
