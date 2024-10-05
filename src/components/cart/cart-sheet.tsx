@@ -23,6 +23,7 @@ import { productos } from "@/data/productos";
 import { currencyFormat } from "@/lib/utils";
 import { useCart } from "./cart-context";
 import { CheckoutForm } from "../form/checkout-form";
+import Link from "next/link";
 
 export const CartSheet = () => {
 
@@ -31,10 +32,8 @@ export const CartSheet = () => {
 
     return(
         <Sheet>
-            <SheetTrigger asChild>
-                <Button className='self-center pl-4 text-red-700 hover:scale-110 hover:text-red-800 transition ease-in-out duration-200 '>
-                    <FaOpencart size={36}/>
-                </Button>
+            <SheetTrigger className='self-center text-red-700 hover:scale-110 hover:text-red-800 transition ease-in-out duration-200'  asChild>
+                <FaOpencart size={36}/>
             </SheetTrigger>
             <SheetContent className="flex flex-col">
                 <SheetHeader>

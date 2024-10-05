@@ -7,17 +7,6 @@ import { Input } from "../ui/input";
 import { useCart } from "./cart-context";
 import { PiTrashSimpleBold } from "react-icons/pi";
 
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog"
 import { AlertDiag } from "../form/alert-dialog";
 import { set } from "zod";
 import { toast } from "../hooks/use-toast";
@@ -110,7 +99,8 @@ export const CartCard = (cartCard : CartCard ) => {
                         onChange={handleInputChange} 
                         onBlur={handleBlur}  
                         value={quantity} 
-                        className="border-none font-medium text-sm w-20  text-red-800 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                        className="border-none font-medium text-sm w-20  text-red-800 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" 
+                    />
                     <Button 
                         onClick={handleIncrement} 
                         className="w-fit text-red-800 font-bold border border-red-800 hover:bg-red-800/75 hover:text-white rounded-full hover:scale-105 transition ease-in-out duration-200 outline-none">

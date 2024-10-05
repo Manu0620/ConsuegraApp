@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/select"
 import { IoIosSend } from "react-icons/io"
 import { Textarea } from "../ui/textarea";
+import { useState } from "react"
 
 const formSchema = contactFormSchema;
 
@@ -43,15 +44,16 @@ export function ContactForm() {
 
     const onSubmit = form.handleSubmit((data) => {
       console.log(data)
+
       toast({
-        title: "Exito !",
+        title: "Éxito !",
         description: (
             <p>
-                Tu mensaje ha sido enviada con exito. <br />
+                Tu mensaje ha sido enviada con éxito. <br />
                 Nos pondremos en contacto contigo lo antes posible.
             </p>
         ),
-      })
+      })     
   })
 
     return (
@@ -141,7 +143,6 @@ export function ContactForm() {
               className="text-red-700 bg-white/75 self-end font-bold rounded-xl hover:bg-white hover:text-red-700 hover:scale-105 transition ease-in-out duration-200">
                 <IoIosSend /> Enviar
             </Button>
-
         </form>
       </Form>
     )

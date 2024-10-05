@@ -31,7 +31,7 @@ export default function Products() {
                         </div>
                     </div>
                 </div>
-                <div className="product-list flex flex-row flex-wrap py-12 px-6 justify-center w-full">
+                <div className="product-list flex flex-row flex-wrap py-12 px-6 justify-center items-end w-full">
                     {productos.map((product, index) => (
                         <ProductCard 
                             key={index}  

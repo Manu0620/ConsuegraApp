@@ -21,10 +21,48 @@ export const contactFormSchema = z.object({
   ),
 })
 
+//Checkout Form Schema  
+export const checkFormSchema = z.object({
+  names: z.string({
+    message: "El nombre es requerido"
+  }).min(3, 
+    { message: "El nombre debe tener al menos 3 caracteres" }
+  ),
+  lastnames: z.string(
+    { message: "El apellido es requerido" }
+  ).min(3,  
+    { message: "El apellido debe tener al menos 3 caracteres" }
+  ),
+  address1: z.string(
+    { message: "La dirección es requerida" }
+  ).min(10,
+    { message: "La dirección debe tener al menos 10 caracteres" }
+  ),
+  address2: z.string().optional(),
+  phone: z.string(
+    { message: "El teléfono es requerido" }
+  ).min(10,
+    { message: "El teléfono debe tener al menos 10 caracteres" }
+  ),
+  email: z.string(
+    { message: "El correo es requerido" }
+  ).email(),
+  advice: z.string(
+    { message: "La nota es requerida" }
+  ).min(20,
+    { message: "La nota debe tener al menos 20 caracteres" }
+  ).optional(),
+})
+
+
 //Filters Form Schema
 export const filtersFormSchema = z.object({
-  search: z.string().optional(),
-  byCategory: z.string().optional(),
+  search: z.string(
+    { message: "La búsqueda es requerida" }
+  ).optional(),
+  byCategory: z.string(
+    { message: "La categoría es requerida" }
+  ).optional(),
   desde: z.string().optional().refine(
     (value) => value === undefined || !isNaN(Number(value)) && Number(value) >= 0,
     { message: "El precio debe ser un número mayor o igual a 0" }

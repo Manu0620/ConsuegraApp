@@ -2,10 +2,22 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableFooter,
+    TableRow,
+  } from "@/components/ui/table"
 
 import {
     Form,
@@ -15,34 +27,180 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-  } from "@/components/ui/form"
+} from "@/components/ui/form"
+
+import { Textarea } from "../ui/textarea";
 
 import { GrSend } from "react-icons/gr";
-import { IoIosSend } from "react-icons/io";
+import { IoIosArrowBack, IoIosSend } from "react-icons/io";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { checkFormSchema, currencyFormat } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { CustomerInfoForm } from "./customer-info-form";
+import { toast } from "../hooks/use-toast";
+import { useCart } from "../cart/cart-context";
+import { FaOpencart } from "react-icons/fa6";
+import { ScrollArea } from "../ui/scroll-area";
+import { on } from "events";
+
+interface FormData {
+    names: string;
+    lastnames: string;
+    phone: string;
+    email: string;
+    address1: string;
+    address2?: string; // Campo opcional
+    advice?: string; // Campo opcional
+}
+
 
 export const CheckoutForm = () => {
+    
+    const [page, setPage] = useState(1);
+    const { cartItems, subtotal } = useCart();
+
+    // Luego, usa el tipo en useForm
+    const form = useForm<FormData>({
+        resolver: zodResolver(checkFormSchema),
+        mode: "onBlur",
+    });
+
+    // Función para cambiar de página solo si el formulario es válido
+    const handleNextPage = async () => {
+        const isValid = await form.trigger(); // Verifica si los campos son válidos
+        if (isValid) {
+            setPage(page + 1);
+        } else {
+            toast({
+                variant: "destructive",
+                title: "Ups ! Algo salió mal",
+                description: "Por favor, complete todos los campos correctamente.",
+            })
+        }
+    };
+
+    const handlePrevPage = () => {
+        setPage(page - 1);
+    }
+
+    const onSubmit = form.handleSubmit((data) => {
+        console.log(data);
+    })
 
     return(
-        <Dialog>
-            <DialogTrigger className="w-full">
-                <Button className="text-red-800 w-full font-bold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white hover:scale-105 transition ease-in-out duration-200 outline-none flex items-center">
-                    <GrSend className="mr-2" /> Enviar cotización
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="bg-red-50 text-red-800 border-2 border-red-800 w-1/2 rounded-3xl ">
-                <DialogHeader>
-                    <DialogTitle 
-                        className="flex flex-row gap-2 border-b border-red-800 p-8">
-                        <GrSend /> Enviar cotización
-                    </DialogTitle>
-                    <DialogDescription className="flex flex-col py-10 px-4 items-center justify-center">
-                        
-                    </DialogDescription>
-                </DialogHeader>
+        <>
+            <Dialog>
+                <DialogTrigger className="flex items-center justify-center text-red-800 text-center w-full px-4 py-2 font-bold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white hover:scale-105 transition ease-in-out duration-200 outline-none">
+                    <GrSend className="mr-2" /> Realizar cotización
+                </DialogTrigger>
+                <DialogContent className="bg-white text-red-800 border-2 border-red-800 rounded-3xl lg:w-1/2 md:w-8/12 sm:w-11/12 mobile:w-11/12 mobilesm:w-11/12">
+                    <DialogHeader className="leading-none border-b-2 border-red-800 p-5">
+                        <DialogTitle 
+                            className="flex flex-row gap-2 font-semibold">
+                            <GrSend /> {page == 1 ? 'Cotización' : 'Confirmación'}
+                        </DialogTitle>
+                        <DialogDescription 
+                            className="w-full font-light">
+                            {page == 1 ? 'Por favor, complete el formulario para enviar su cotización.' : 'Por favor, revise su cotización antes de enviarla.'}
+                        </DialogDescription>
+                    </DialogHeader>
+                    {page == 1 ?
+                        <CustomerInfoForm form={form} onSubmit={onSubmit} />
+                    : page == 2 ?
+                        <>
+                            <ScrollArea className="h-fit max-h-82">
+                                <DialogTitle className="flex flex-row p-3 font-semibold">
+                                    <FaOpencart className="mr-2"/> Productos en el carrito
+                                </DialogTitle>
+                                <Table 
+                                    className="border-b border-red-800 font-medium">
+                                    <TableHeader className="font-bold border-b border-t border-red-800">
+                                            <TableHead>Nombre</TableHead>
+                                            <TableHead>Cantidad</TableHead>
+                                            <TableHead className="text-right font-semibold">Precio</TableHead>
+                                            <TableHead className="text-right font-semibold">Total</TableHead>
+                                            <TableHead className="text-right">Acciones</TableHead>
+                                    </TableHeader>
+                                    <TableBody className="text-gray-800">
+                                        {cartItems.map((item, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell>{item.name}</TableCell>
+                                                <TableCell>{item.quantity}</TableCell>
+                                                <TableCell className="text-right">
+                                                    {currencyFormat(parseFloat(item.price))}
+                                                </TableCell>
+                                                <TableCell className="text-right">
+                                                    {currencyFormat(item.quantity * parseFloat(item.price))}
+                                                </TableCell>
+                                                <TableCell>
+                                                    
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                    <TableFooter className="font-semibold">
+                                        <TableRow>
+                                            <TableCell colSpan={2}></TableCell>
+                                            <TableCell className="text-right">Subtotal</TableCell>
+                                            <TableCell className="text-right">{currencyFormat(subtotal)}</TableCell>
+                                        </TableRow>
+                                    </TableFooter>
+                                </Table>
+                            </ScrollArea>
+                            
+                            <Form {...form}>
+                                <form onSubmit={onSubmit} className="customer-info flex flex-col gap-5 text-start ">
+                                    <FormField
+                                        control={form.control}
+                                        name="advice"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-red-800 font-semibold" >Nota</FormLabel>
+                                                <FormControl className="border-red-800 text-red-800 hover:bg-red-800/25 font-medium rounded-xl">
+                                                    <Textarea
+                                                        placeholder="Esperamos tu nota..."
+                                                        className="resize-none"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage className="text-[12px] text-red-800"/>
+                                            </FormItem>
+                                        )}/>
+                                       
+                                        {page == 2 ? (
+                                            <DialogFooter className="flex flex-row flex-wrap-reverse gap-2 justify-end leading-none border-red-800">
+                                                <Button 
+                                                    onClick={handlePrevPage} 
+                                                    className="text-red-800 font-semibold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-in-out duration-200"> 
+                                                    <IoIosArrowBack className="mr-2" /> Atrás
+                                                </Button>
+                                                <Button
+                                                    type="submit" 
+                                                    className="text-red-800 w-1/4 font-semibold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-in-out duration-200 ">
+                                                    <IoIosSend className="mr-2" /> Enviar
+                                                </Button>
+                                            </DialogFooter>
+                                        ) : null }
+                                        
+                                </form>
+                            </Form>
+                        </>
+                    : null}
 
-            </DialogContent>
-        </Dialog>
+                    {page === 1 && (
+                        <DialogFooter className="flex flex-row flex-wrap-reverse gap-2 justify-end leading-none border-red-800">
+                            <Button
+                            onClick={handleNextPage}
+                            className="text-red-800 font-semibold text-sm w-1/4 border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-in-out duration-200">
+                            Siguiente
+                            </Button>
+                        </DialogFooter>
+                    )}
+                    
+                </DialogContent>
+            </Dialog>
+        </>
     );
 }

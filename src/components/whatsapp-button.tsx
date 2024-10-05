@@ -16,7 +16,7 @@ export const WhatsAppButton = (props: WhatsAppButtonProps) => {
             href={`https://wa.me/${phone}?text=${message}`} 
             target="_blank" 
             className={cn(
-                "flex items-center w-20 h-20 justify-center drop-shadow-lg gap-2 p-2 text-xl rounded-full bg-gradient-to-tr from-green-500 to-green-400 hover:bg-gradient-to-br  text-black transition-colors duration-200",
+                "flex items-center hover:drop-shadow-xl w-20 h-20 justify-center drop-shadow-lg gap-2 p-2 text-xl rounded-full bg-gradient-to-tr from-green-500 to-green-400 hover:bg-gradient-to-br  text-black transition-colors duration-200",
                 className
             )}>
             <BsWhatsapp
