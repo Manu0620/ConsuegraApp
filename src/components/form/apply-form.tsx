@@ -1,9 +1,8 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { FiPaperclip } from "react-icons/fi";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 export const ContactFormSchema = z.object({
     name: z.string(),
@@ -12,20 +11,19 @@ export const ContactFormSchema = z.object({
     message: z.string(),
 })
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useToast } from "@/components/hooks/use-toast"
+import { useToast } from "@/components/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+  FormMessage
+} from "@/components/ui/form";
 
 import {
   Select,
@@ -35,9 +33,8 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import Link from "next/link"
-import { IoIosSend } from "react-icons/io"
+} from "@/components/ui/select";
+import { IoIosSend } from "react-icons/io";
 
 const formSchema = z.object({
   names: z.string().min(8, 
