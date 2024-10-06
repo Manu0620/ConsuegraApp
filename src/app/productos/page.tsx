@@ -5,6 +5,7 @@ import { ProductCard } from '@/components/view-products/product-card';
 import { productos } from '@/data/productos';
 
 export default function Products() {
+
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
       <section className="hero-products flex flex-row mt-48 bg-white shadow-md text-center items-center w-full min-h-60 overflow-hidden">

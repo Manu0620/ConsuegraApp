@@ -1,3 +1,5 @@
+'use client';
+
 import { Principles } from '@/components/constants/principles';
 import { Principle } from '@/components/nosotros/principle';
 import { BsEyeFill } from 'react-icons/bs';
@@ -6,6 +8,15 @@ import { FaBullseye } from 'react-icons/fa6';
 import { IoStarSharp } from 'react-icons/io5';
 
 export default function Nosotros() {
+
+  const redirect = async () => {  
+    await fetch('https://localhost:3000/api', {
+      method: 'GET',
+      
+    });
+  };
+
+
   return (
     <main className="flex min-h-screen flex-col items-center p-0 bg-red">
       <section className="hero-nosotros mt-36 relative shadow-md z-30 flex flex-row items-center w-full min-h-fit bg-white overflow-hidden">
@@ -23,6 +34,7 @@ export default function Nosotros() {
       </section>
 
       <section className="shadow-md flex flex-col p-12 w-full min-h-[60vh] items-center bg-gray-100">
+        <button onClick={redirect}>Hola</button>
         <div className="flex flex-row flex-wrap-reverse pb-6 space-y-12 min-h-[30vh] lg:w-10/12 lg:flex-row md:w-10/12 md:flex-col-reverse sm:w-full  sm:flex-col-reverse mobile:w-full mobile:flex-col-reverse mobilesm:w-full mobilesm:flex-col-reverse">
           <div className="flex flex-col basis-7/12 justify-center items-center text-pretty text-center text-red-700 ">
             <h1 className=" text-red-800 font-bold py-6 text-pretty text-center mobilesm:text-xl mobile:text-2xl md:text-3xl lg:text-4xl">
