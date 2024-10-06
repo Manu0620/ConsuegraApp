@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import Cookies from "js-cookie";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 const CART_COOKIE_KEY = "user_cart";
 
@@ -18,6 +18,7 @@ interface CartContextType {
     subtotal: number;
     addToCart: (item: CartItem) => void;
     removeFromCart: (productId: string) => void;
+    clearCart: () => void;
     updateQuantity: (productId: string, quantity: number) => void;
 }
 
@@ -69,6 +70,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         Cookies.set(CART_COOKIE_KEY, JSON.stringify(updatedCart), { expires: 7 });
     };
 
+    const clearCart = () => {
+        setCartItems([]);
+        Cookies.remove(CART_COOKIE_KEY);
+    };
+
     const updateQuantity = (productId: string, quantity: number) => {
         const updatedCart = cartItems.map((item) => {
             if (item.id === productId) {
@@ -82,7 +88,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <CartContext.Provider value={{ cartItems, subtotal, addToCart, removeFromCart, updateQuantity }}>
+        <CartContext.Provider value={{ cartItems, subtotal, addToCart, removeFromCart, clearCart, updateQuantity }}>
             {children}
         </CartContext.Provider>
     );

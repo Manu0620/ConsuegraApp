@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Dialog,
     DialogContent,
@@ -6,44 +8,41 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
+    TableFooter,
     TableHead,
     TableHeader,
-    TableFooter,
-    TableRow,
-  } from "@/components/ui/table"
+    TableRow
+} from "@/components/ui/table";
 
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
+    FormMessage
+} from "@/components/ui/form";
 
 import { Textarea } from "../ui/textarea";
 
-import { GrSend } from "react-icons/gr";
-import { IoIosArrowBack, IoIosSend } from "react-icons/io";
-import { Button } from "../ui/button";
 import { checkFormSchema, currencyFormat } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { CustomerInfoForm } from "./customer-info-form";
-import { toast } from "../hooks/use-toast";
-import { useCart } from "../cart/cart-context";
 import { FaOpencart } from "react-icons/fa6";
+import { GrSend } from "react-icons/gr";
+import { IoIosArrowBack, IoIosSend } from "react-icons/io";
+import { useCart } from "../cart/cart-context";
+import { toast } from "../hooks/use-toast";
+import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
-import { on } from "events";
+import { CustomerInfoForm } from "./customer-info-form";
 
 interface FormData {
     names: string;
@@ -57,15 +56,21 @@ interface FormData {
 
 
 export const CheckoutForm = () => {
-    
+
     const [page, setPage] = useState(1);
-    const { cartItems, subtotal } = useCart();
+    const { cartItems, subtotal, clearCart } = useCart();
 
     // Luego, usa el tipo en useForm
     const form = useForm<FormData>({
         resolver: zodResolver(checkFormSchema),
         mode: "onBlur",
     });
+
+    const formReset = async () => {
+        await form.reset();
+        await clearCart();
+        
+    }
 
     // Función para cambiar de página solo si el formulario es válido
     const handleNextPage = async () => {
@@ -85,8 +90,20 @@ export const CheckoutForm = () => {
         setPage(page - 1);
     }
 
-    const onSubmit = form.handleSubmit((data) => {
+    const onSubmit = form.handleSubmit((data: FormData) => {
         console.log(data);
+
+        // Reset form and cart
+        formReset();
+
+        //close dialogs 
+        setPage(1);
+
+        toast({
+            variant: 'success', 
+            title: 'Gracias !',
+            description: 'Tu cotizacion fue enviada, nos pondremos en contacto contigo.'
+        })
     })
 
     return(
@@ -110,18 +127,17 @@ export const CheckoutForm = () => {
                         <CustomerInfoForm form={form} onSubmit={onSubmit} />
                     : page == 2 ?
                         <>
-                            <ScrollArea className="h-fit max-h-82">
+                            <ScrollArea className="h-fit max-h-72">
                                 <DialogTitle className="flex flex-row p-3 font-semibold">
                                     <FaOpencart className="mr-2"/> Productos en el carrito
                                 </DialogTitle>
                                 <Table 
-                                    className="border-b border-red-800 font-medium">
+                                    className="border-b border-red-800 font-medium ">
                                     <TableHeader className="font-bold border-b border-t border-red-800">
                                             <TableHead>Nombre</TableHead>
                                             <TableHead>Cantidad</TableHead>
                                             <TableHead className="text-right font-semibold">Precio</TableHead>
                                             <TableHead className="text-right font-semibold">Total</TableHead>
-                                            <TableHead className="text-right">Acciones</TableHead>
                                     </TableHeader>
                                     <TableBody className="text-gray-800">
                                         {cartItems.map((item, index) => (

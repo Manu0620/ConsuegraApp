@@ -1,34 +1,26 @@
-
-import { Button } from "@/components/ui/button"
+"use client";
 
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger
+} from "@/components/ui/sheet";
 
 
-import { IoMdCart } from "react-icons/io";
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { CartCard } from "./cart-card";
-import { useEffect, useState } from "react";
-import { FaMoneyBillTransfer, FaOpencart } from "react-icons/fa6";
-import { GrSend } from "react-icons/gr";
-import { productos } from "@/data/productos";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { currencyFormat } from "@/lib/utils";
-import { useCart } from "./cart-context";
+import { FaOpencart } from "react-icons/fa6";
 import { CheckoutForm } from "../form/checkout-form";
-import Link from "next/link";
+import { CartCard } from "./cart-card";
+import { useCart } from "./cart-context";
 
 export const CartSheet = () => {
 
     const { cartItems, subtotal } = useCart();
-    
 
     return(
         <Sheet>

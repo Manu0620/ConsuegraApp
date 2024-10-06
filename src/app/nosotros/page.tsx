@@ -1,10 +1,11 @@
 
 
-import { Menu } from "@/components/menu";
-import { Footer } from '@/components/footer';
 import { Principles } from "@/components/constants/principles";
-import { CardVertical } from "@/components/card-vertical";
 import { Principle } from "@/components/nosotros/principle";
+import { BsEyeFill } from "react-icons/bs";
+import { FaBullseye } from "react-icons/fa6";
+
+import { IoStarSharp } from "react-icons/io5";
 
 export default function Nosotros() {
   return (
@@ -19,7 +20,7 @@ export default function Nosotros() {
         <div className="flex flex-row flex-wrap-reverse pb-6 space-y-12 min-h-[30vh] lg:w-10/12 lg:flex-row md:w-10/12 md:flex-col-reverse sm:w-full  sm:flex-col-reverse mobile:w-full mobile:flex-col-reverse mobilesm:w-full mobilesm:flex-col-reverse">
             <div className="flex flex-col basis-7/12 justify-center items-center text-pretty text-center text-red-700 ">
               <h1 
-                className=" text-red-800 font-bold pb-6 text-pretty text-center mobilesm:text-xl mobile:text-2xl md:text-3xl lg:text-4xl">
+                className=" text-red-800 font-bold py-6 text-pretty text-center mobilesm:text-xl mobile:text-2xl md:text-3xl lg:text-4xl">
                   Historia
               </h1>
                 <p className="text-start text-gray-800 font-normal lg:text-md lg:px-12 md:text-md md:px-0 sm:text-[14px] sm:px-0 mobile:text-[14px] mobile:px-0 mobilesm:text-[14px] mobilesm:px-0">
@@ -38,7 +39,7 @@ export default function Nosotros() {
                 </p>
             </div>
             <div className="flex flex-col basis-5/12 justify-center items-center">
-                <img className="border border-red-700 object-cover shadow-lg rounded-3xl w-fit" src={'/nosotros/Ramon-Consuegra.jpg'} alt="..."/>
+                <img className="border border-red-700 contrast-75 antialiased object-cover drop-shadow-lg rounded-3xl w-fit" src={'/nosotros/Ramon-Consuegra.jpg'} alt="..."/>
                 <h1 className=" text-red-700 font-semibold mt-2 text-pretty text-center mobilesm:text-sm mobile:text-sm md:text-lg lg:text-xl">Sr. Ramón María Consuegra Lebrón</h1>
                 <p className=" text-red-700 font-normal text-pretty text-center mobilesm:text-sm mobile:text-sm md:text-md lg:text-md">Presidente</p>
             </div>
@@ -51,7 +52,17 @@ export default function Nosotros() {
             {
                 Principles.map((principle, index) => (
                   // <CardVertical key={index} image={principle.image} titulo={principle.titulo} descripcion={principle.descripcion} />
-                  <Principle key={index} title={principle.titulo} description={principle.descripcion} image={principle.image} reverse={principle.reverse}/>
+                  <Principle 
+                    key={index} 
+                    icon={
+                      principle.titulo == 'Misión'? <FaBullseye size={120} className="flex text-red-800" /> 
+                      :principle.titulo == 'Visión' ? <BsEyeFill size={120} className="flex text-red-800" />
+                      : <IoStarSharp  size={120} className="flex text-red-800"/> 
+                    } 
+                    title={principle.titulo} 
+                    description={principle.descripcion} 
+                    image={principle.image} 
+                    reverse={principle.reverse}/>
                 ))
             }         
         </div>

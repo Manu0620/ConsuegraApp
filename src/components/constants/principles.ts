@@ -1,4 +1,4 @@
-
+import React from "react";
 
 export const Principles = [
     {
@@ -10,12 +10,14 @@ export const Principles = [
     {
         image: '/nosotros/vision_img.webp',
         titulo: 'Visión',
+        icon: typeof React.Component,
         descripcion: 'Ser la ferretería de referencia en la comunidad, reconocida por nuestra amplia gama de productos, nuestro compromiso con la calidad y la satisfacción del cliente.',
         reverse: true
     },
     {
         image: '/nosotros/values_img.jpg',
         titulo: 'Valores',
+        icon: typeof React.Component,
         descripcion: 'Nuestro compromiso con la integridad, la innovación, el trabajo en equipo y la responsabilidad social nos guía en cada decisión y acción que tomamos.',
         reverse: false
     }

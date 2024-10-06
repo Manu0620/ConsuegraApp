@@ -1,13 +1,12 @@
 "use client"; 
 
 import Image from "next/image";
-import React from "react";
 
 import { Category } from "@/components/category";
-import { InfoCard } from "@/components/info-card";
+import { homeSlides } from "@/components/constants/home-slides";
 import { HomeInfo } from "@/components/constants/info-cards";
 import { Swipper } from "@/components/home/swiper_home";
-import { homeSlides } from "@/components/constants/home-slides";
+import { InfoCard } from "@/components/info-card";
 
 import { productos } from '@/data/productos';
 
@@ -37,22 +36,22 @@ export default function Home() {
 
       <section className="flex flex-col w-full min-h-[60vh] py-12 px-6 text-pretty shadow-md items-center justify-center bg-blue-50"> 
         <h1 className="text-blue-900 pb-6 font-bold mobilesm:text-2xl mobile:text-2xl md:text-3xl lg:text-3xl">Productos destacados</h1>
-        <div className="product-carousel flex flex-row flex-wrap w-3/4 justify-center items-center">
+        <div className="product-carousel flex flex-row flex-wrap w-10/12 justify-center items-center">
           {productos.map((producto, index) => (
-              <div key={index} className="card px-16 py-6 flex flex-col basis-2/12 w-full h-full items-center justify-center text-pretty">
-                <Image 
-                  className="border border-transparent contrast-125 rounded-full shadow-md max-h-[200px] max-w-[200px] object-contain bg-white"
+              <div key={index} className="card flex flex-col p-6 basis-1/4 items-center justify-center">
+                
+                <div className="flex flex-col grayscale text-lg contrast-125 hover:grayscale-0 hover:scale-105 transition ease-in-out duration-200">
+                  <Image 
+                  className="contrast-125 rounded-3xl drop-shadow-lg max-h-[300px] max-w-[300px] object-contain"
                   key={producto.id} 
                   src={producto.portrait} 
                   alt='...' 
-                  width={200} 
-                  height={200} 
+                  width={250} 
+                  height={250} 
                   priority/>
-
-                {/* <p className="mx-5 mt-2 text-[12px] text-gray-500 self-start"># {producto.id}</p> */}
-                <h1 className="mt-5 text-md text-blue-900 font-bold self-center">{producto.name}</h1>
-                <p className="text-[12px] text-blue-900 text-center text-ellipsis line-clamp-3">{producto.description}</p>
-                {/* <h1 className="mx-5 mt-2 text-xl text-red-700 font-bold self-start">{producto.price}</h1> */}
+                  <h1 className=" p-2 text-blue-900 font-bold self-center">{producto.name}</h1>
+                </div>
+                <p className="text-[12px] w-3/4 text-blue-900 text-center text-ellipsis line-clamp-3">{producto.description}</p>
               </div>
             ))}
         </div>
