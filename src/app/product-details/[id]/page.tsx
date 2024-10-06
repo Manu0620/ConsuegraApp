@@ -14,8 +14,10 @@ import { FaOpencart } from 'react-icons/fa';
 
 export default function ProductDetails() {
   const { addToCart, cartItems, updateQuantity } = useCart();
+  const [quantity, setQuantity] = useState(1);
   const params = useParams();
   const productId = params.id;
+  
   const product = productos.find(
     (product) => product.id.toString() === productId,
   );
@@ -43,7 +45,6 @@ export default function ProductDetails() {
   //     fetchProduct();
   // }, [productId]);
 
-  const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
