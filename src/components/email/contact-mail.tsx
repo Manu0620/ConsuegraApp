@@ -21,7 +21,12 @@ export function Mail (props: Props) {
             className="w- bg-red-100 rounded-xl font-sans">
             <Section 
                className="w-full bg-red-800 text-white text-center font-semibold rounded-xl">
-               <Heading as="h2">Mensaje de contacto de {names}</Heading>
+               <Heading as="h2" className="flex flex-col">
+                  Mensaje de contacto de 
+                  <span className="flex">
+                     {names}
+                  </span>
+               </Heading>
             </Section>
             <Section className="p-10 font-medium leading-none">
                <Img src='https://consuegra-app.vercel.app/LogoMono.png' alt="Logo" className="mx-auto"/>
