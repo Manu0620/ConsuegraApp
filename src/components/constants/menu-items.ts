@@ -19,10 +19,10 @@ export const menuItems = [
         ],
         categories: [
             {
-                title: 'Categorias',
+                title: 'Categorías',
                 listItems: [
                     {
-                        title: 'Categorias',
+                        title: 'Categorías',
                         href: '/productos',
                         description: 'Explore nuestros productos, acceda a consulta, destacado y mas.',
                     },

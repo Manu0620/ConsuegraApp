@@ -100,14 +100,14 @@ export const CheckoutForm = () => {
       variant: 'success',
       title: 'Gracias !',
       description:
-        'Tu cotizacion fue enviada, nos pondremos en contacto contigo.',
+        'Tu cotización fue enviada, nos pondremos en contacto contigo.',
     });
   });
 
   return (
     <>
       <Dialog>
-        <DialogTrigger className="flex items-center justify-center text-red-800 text-center w-full px-4 py-2 font-bold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white hover:scale-105 transition ease-in-out duration-200 outline-none">
+        <DialogTrigger disabled={cartItems.length > 0 ? false : true} className="flex items-center justify-center text-red-800 text-center w-full px-4 py-2 font-bold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white hover:scale-105 transition ease-in-out duration-200 outline-none">
           <GrSend className="mr-2" /> Realizar cotización
         </DialogTrigger>
         <DialogContent className="bg-white text-red-800 border-2 border-red-800 rounded-3xl lg:w-1/2 md:w-8/12 sm:w-11/12 mobile:w-11/12 mobilesm:w-11/12">
@@ -125,11 +125,12 @@ export const CheckoutForm = () => {
             <CustomerInfoForm form={form} onSubmit={onSubmit} />
           ) : page == 2 ? (
             <>
-              <ScrollArea className="h-fit max-h-72">
-                <DialogTitle className="flex flex-row p-3 font-semibold">
-                  <FaOpencart className="mr-2" /> Productos en el carrito
-                </DialogTitle>
-                <Table className="border-b border-red-800 font-medium ">
+              <DialogTitle className="flex flex-row p-3 font-semibold">
+                <FaOpencart className="mr-2" /> Productos en el carrito
+              </DialogTitle>
+              
+              <Table className="border-b border-red-800 font-medium">
+                
                   <TableHeader className="font-bold border-b border-t border-red-800">
                     <TableHead>Nombre</TableHead>
                     <TableHead>Cantidad</TableHead>
@@ -140,23 +141,22 @@ export const CheckoutForm = () => {
                       Total
                     </TableHead>
                   </TableHeader>
-                  <TableBody className="text-gray-800">
-                    {cartItems.map((item, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{item.name}</TableCell>
-                        <TableCell>{item.quantity}</TableCell>
-                        <TableCell className="text-right">
-                          {currencyFormat(parseFloat(item.price))}
-                        </TableCell>
-                        <TableCell className="text-right">
-                          {currencyFormat(
-                            item.quantity * parseFloat(item.price),
-                          )}
-                        </TableCell>
-                        <TableCell></TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
+                  <ScrollArea className="h-72 w-full">
+                    <TableBody className="text-black text-sm">
+                      {cartItems.map((item, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{item.name}</TableCell>
+                          <TableCell>{item.quantity}</TableCell>
+                          <TableCell className="text-right">
+                            {currencyFormat(parseFloat(item.price))}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            {currencyFormat(item.quantity * parseFloat(item.price))}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </ScrollArea>
                   <TableFooter className="font-semibold">
                     <TableRow>
                       <TableCell colSpan={2}></TableCell>
@@ -166,9 +166,9 @@ export const CheckoutForm = () => {
                       </TableCell>
                     </TableRow>
                   </TableFooter>
-                </Table>
-              </ScrollArea>
-
+                
+              </Table>
+              
               <Form {...form}>
                 <form
                   onSubmit={onSubmit}

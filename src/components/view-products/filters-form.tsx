@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/hooks/use-toast"
 import { z } from "zod"
-import { useForm } from "react-hook-form"
+import { useForm, UseFormReturn } from "react-hook-form"
 
 import {
   Form,
@@ -33,21 +33,22 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { filtersFormSchema } from "@/lib/utils"
 import { useEffect, useState } from "react"
 
-export const FiltersForm = () => { 
+interface FormData {
+    search: string,
+    byCategory: string,
+    desde: number,
+    hasta: number
+}
+
+interface FiltersFormProps {
+    form: UseFormReturn<FormData>, 
+    onSubmit: () => void
+}
+
+export const FiltersForm = ({form, onSubmit}: FiltersFormProps) => { 
 
     const [filters, setFilters] = useState([""]);
 
-    const form = useForm({
-        resolver: zodResolver(filtersFormSchema),
-        mode: 'onChange',
-    })
-
-    const onSubmit = form.handleSubmit((formData) => {
-        const { search, byCategory, desde, hasta } = formData;
-
-
-    })
-    
     return (
 
         <Form {...form}>
@@ -92,14 +93,14 @@ export const FiltersForm = () => {
                     control={form.control}
                     name="desde"
                     render={({ field }) => (
-                    <FormItem >
+                    <FormItem>
                         <FormLabel className="text-red-800 font-semibold">Por precio</FormLabel>
                         <FormControl className="border-red-800 focus:bg-red-700/25 text-red-800 font-medium rounded-xl">
                             <Input type='number' placeholder="Desde..." {...field} />
                         </FormControl>
                         <FormMessage className="text-red-800"/>
                     </FormItem>
-                )}/>  
+                )}/>
                 <FormField
                     control={form.control}
                     name="hasta"
@@ -117,9 +118,6 @@ export const FiltersForm = () => {
                     className="border border-red-800 text-red-800 font-semibold rounded-xl hover:bg-red-800/75 hover:text-white hover:scale-105 transition ease-in-out duration-200">
                         <TbFilterCheck />  Aplicar filtros
                 </Button>
-                <div className="filters flex flex-row ">
-                    
-                </div>
             </form>
         </Form>
     );

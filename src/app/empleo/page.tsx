@@ -15,7 +15,7 @@ export default function Empleo() {
       <section className="empleo flex flex-col bg-white relative p-12 shadow-md w-full min-h-[60vh] items-center">
         <div className="flex flex-row flex-wrap w-full space-y-5 lg:items-start lg:justify-start md:items-start md:justify-center sm:items-start sm:justify-center mobile:items-start mobile:justify-center mobilesm:items-start mobilesm:justify-center ">
           <div className="flex flex-col text-pretty space-y-5 lg:w-1/2 lg:p-16 md:w-full md:px-32 sm:w-full mobile:w-full mobilesm:w-full">
-            <h1 className="flex text-red-700 font-bold text-pretty mobilesm:text-xl mobile:text-xl sm:text-3xl md:text-4xl lg:text-4xl">
+            <h1 className="flex text-red-800 font-bold text-pretty mobilesm:text-xl mobile:text-xl sm:text-3xl md:text-4xl lg:text-4xl">
               Se parte del equipo
             </h1>
             <p className="text-gray-800 font-light lg:text-[16px] md:text-md sm:text-sm mobile:text-sm mobilesm:text-sm">
@@ -30,24 +30,24 @@ export default function Empleo() {
               comunidad.
             </p>
 
-            <div className="social-media flex flex-row py-2 border-t border-red-700 w-full text-pretty text-red-700 text-lg font-light">
+            <div className="social-media flex flex-row py-2 border-t border-red-800 w-full text-pretty text-red-800 text-lg font-light">
               <Link
                 href="https://www.instagram.com/rmconsuegrasrl/"
-                className="mx-1 p-3 h-fit flex items-center rounded-full hover:bg-pink-600/25"
+                className="mx-1 p-4 h-fit flex items-center rounded-full hover:bg-red-800/25"
                 target="_blank"
               >
                 <FaInstagram size={22} />
               </Link>
               <Link
                 href="https://www.facebook.com/rmconsuegra"
-                className="mx-1 p-3 h-fit flex items-center rounded-full hover:bg-blue-600/25"
+                className="mx-1 p-4 h-fit flex items-center rounded-full hover:bg-red-800/25"
                 target="_blank"
               >
                 <FaFacebookF size={22} />
               </Link>
               <Link
                 href="/documents/catalogo-productos-consuegra.pdf"
-                className="mx-1 p-3 h-fit flex items-center rounded-full hover:bg-red-700/25"
+                className="mx-1 p-4 h-fit flex items-center rounded-full hover:bg-red-800/25"
                 target="_blank"
               >
                 <FaBookOpen size={22} />

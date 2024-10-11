@@ -24,27 +24,12 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col bg-white items-center justify-center min-h-screen">
         <h1 className="text-2xl font-bold text-red-800">¡Oops!</h1>
         <p className="text-lg">Producto no encontrado. 😅</p>
       </div>
     );
   }
-
-  // useEffect(() => {
-  //     const fetchProduct = async () => {
-  //         if (productId) {
-  //             const res = await fetch('http://192.168.1.233:8080/api/products?id_product=PVC-345');
-  //             if (!res.ok) {
-  //                 throw new Error(`HTTP error! status: ${res.status}`);
-  //                 }
-  //             let data = await res.json();
-  //             console.log(data);
-  //         }
-  //     };
-  //     fetchProduct();
-  // }, [productId]);
-
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);

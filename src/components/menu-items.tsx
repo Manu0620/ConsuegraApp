@@ -29,7 +29,7 @@ export const MenuItems = () => {
                           </Link>
                       ) : item.listItems ? (
                           <div >
-                              <NavigationMenuTrigger className="flex text-md px-2 items-center cursor-pointer text-center hover:scale-110 transition ease-in-out duration-200">
+                              <NavigationMenuTrigger className="flex text-md px-2 items-center cursor-pointer text-center hover:scale-105 transition ease-in-out duration-100">
                                   {item.title}
                               </NavigationMenuTrigger>
                               <NavigationMenuContent className="bg-red-50 w-fit text-sm text-red-800">
@@ -37,7 +37,7 @@ export const MenuItems = () => {
                                       {item.listItems.map((listItem, index) => (
                                           <NavigationMenuLink asChild key={index}>
                                               <Link
-                                                  className="flex h-full w-full select-none p-3 flex-col text-start justify-center rounded-xl hover:bg-red-800/25"
+                                                  className="flex h-full w-full select-none p-3 flex-col text-start justify-center rounded-xl hover:bg-red-800/25 hover:scale-105 transition ease-in-out duration-100"
                                                   href={listItem.href}
                                                   target={listItem.blank ? "_blank" : undefined}
                                               >
@@ -55,7 +55,7 @@ export const MenuItems = () => {
                               </NavigationMenuContent>
                           </div>
                       ) : (
-                          <Link href={item.href} className="flex px-2 items-center cursor-pointer text-center hover:scale-110 transition ease-in-out duration-200">
+                          <Link href={item.href} className="flex px-2 items-center cursor-pointer text-center hover:scale-105 transition ease-in-out duration-100">
                               {item.title}
                           </Link>
                       )}

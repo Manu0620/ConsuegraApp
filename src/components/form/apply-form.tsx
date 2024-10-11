@@ -4,13 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-export const ContactFormSchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    phone: z.string(),
-    message: z.string(),
-})
-
 import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,16 +28,30 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { IoIosSend } from "react-icons/io";
+import { Textarea } from "../ui/textarea";
 
 const formSchema = z.object({
-  names: z.string().min(8, 
+  names: z.string({
+    message: "El nombre es requerido",
+  }).min(8, 
     { message: "El nombre debe tener al menos 8 caracteres" }
   ),
-  phones: z.string().min(10,
-    { message: "El telefono debe tener al menos 10 caracteres" }
+  phones: z.string({
+    message: "El teléfono es requerido",
+  }).min(10,
+    { message: "El teléfono debe tener al menos 10 caracteres" }
   ),
-  email: z.string().email(),
-  jobs: z.string(),
+  email: z.string(
+    { message: "El correo es requerido" }
+  ).email(),
+  jobs: z.string({
+    message: "El puesto es requerido",
+  }),
+  message: z.string(
+    { message: "El mensaje es requerido" }
+  ).min(30,
+    { message: "El mensaje debe tener al menos 30 caracteres" }
+  ),
 })
 
 export function ApplyForm() {
@@ -58,7 +65,7 @@ export function ApplyForm() {
       console.log(data)
       
       toast({
-        title: "Exito !",
+        title: "Éxito !",
         description: (
             <p>
                 Tu aplicacion ha sido enviada con exito. <br />
@@ -110,7 +117,23 @@ export function ApplyForm() {
               </FormItem>
             )}
           />
-          
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-red-800 font-bold">Mensaje</FormLabel>
+                <FormControl className="border-red-800 text-red-800 hover:bg-white/25 font-medium rounded-xl">
+                  <Textarea
+                    placeholder="Esperamos tu mensaje..."
+                    className="resize-none"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage className="text-white" />
+              </FormItem>
+            )}
+          />  
           <div className="flex flex-row w-full h-fit items-center ">
             <div className="flex flex-row space-x-2 grow">
               <FormField
@@ -153,16 +176,22 @@ export function ApplyForm() {
                   render={({ field }) => (
                     <FormItem>
                       <Label className="text-red-800 font-bold">Adjuntar CV</Label>
-                      <Input type="file" accept=".pdf"  required className="grow border-red-700 focus:bg-red-700/25 text-red-800 font-medium rounded-xl"/>
+                      <FormControl className="border-white text-white hover:bg-white/25 font-medium rounded-xl">
+                        <Input 
+                          type="file" 
+                          accept=".pdf" 
+                          required 
+                          className="grow border-red-700 focus:bg-red-700/25 text-red-800 font-medium rounded-xl"/>
+                      </FormControl>
                       <FormMessage className="text-red-700" />
                     </FormItem>
                   )}
-                />
-            </div>            
+                />          
+            </div>           
           </div>
           <Button 
               type="submit"
-              className="text-red-700 bg-red-700/25 font-bold rounded-xl hover:bg-red-700 hover:text-white hover:scale-110 transition ease-in-out duration-200">
+              className="text-red-700 bg-red-700/25 border border-red-800 font-bold rounded-xl hover:bg-red-700 hover:text-white hover:scale-110 transition ease-in-out duration-200">
                 <IoIosSend /> Aplicar
           </Button>
         </form>

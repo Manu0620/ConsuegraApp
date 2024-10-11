@@ -15,6 +15,8 @@ interface Props{
     price: string,
     portrait: string,
     description: string,
+    category?: string,
+    unit?: string,
 }
 
 export const ProductCard = (product: Props) => {
@@ -60,30 +62,33 @@ export const ProductCard = (product: Props) => {
 
     return(
         <>
-            <div key={product.id} className="flex flex-col space-y-1 basis-1/5 p-3 rounded-3xl">     
+            <div key={product.id} className="flex flex-col space-y-1 basis-1/5 p-3 rounded-3xl hover:scale-105 hover:px-3 transition ease-in-out duration-200">     
                 <div className="card-content last:flex flex-col text-start space-y-1">
-                    <Link className="w-full" href={`/product-details/${product.id}`}>
+                    <Link className="w-full" href={`/productos/${product.id}`}>
                         <img
                             src={product.portrait}
                             alt={product.name}
-                            className="aspect-square min-w-[200px] max-w-[200px] contrast-125 self-center max-h-fit object-contain"
+                            className="flex aspect-square p-3 min-w-[200px] max-w-[200px] max-h-fit object-contain"
                         />
                         <p className="text-black font-light text-[12px]">
-                            # {product.id} | Categoría
+                            # {product.id} | {product.category}
                         </p>
-                        <h1 className="text-black font-semibold text-[16px]">
+                        <h1 className="text-gray-700 font-semibold text-[14px]">
                             {product.name}
                         </h1>
-                        <h1 className="text-red-700 font-bold text-sm">
+                        <h1 className="text-red-800 font-bold text-md">
                             {currencyFormat(parseFloat(product.price))}
-                            <span className="text-[12px] font-light text-black"><span className="font-bold px-2">|</span> Unidad</span>
+                            <span className="text-[12px] font-light text-black"><span className="font-bold px-2">
+                                |
+                            </span> 
+                                {product.unit}
+                            </span>
                         </h1>
                     </Link>
                 </div>
                 <Button onClick={handleClick} className="text-red-800 font-semibold border border-red-800 rounded-xl hover:bg-red-800 hover:text-white transition ease-in-out duration-200 outline-none flex items-center">
                     <FaOpencart className="mr-2" /> Agregar al carrito
                 </Button>
-
             </div>
         </>    
     );

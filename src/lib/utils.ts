@@ -6,20 +6,52 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-//Contact Form Schema
+const formatPhoneNumber = (phone: string) => {
+  // Limpiamos el número eliminando espacios, guiones, etc.
+  const cleaned = phone.replace(/\D/g, '');
+
+  // Aseguramos que tenga 10 dígitos
+  if (cleaned.length === 10) {
+    // Aplicamos el formato para República Dominicana
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+  }
+
+  // Si no tiene los 10 dígitos, devolvemos el número tal cual para que falle la validación
+  return phone;
+};
+
 export const contactFormSchema = z.object({
-  names: z.string().min(8, 
-    { message: "El nombre debe tener al menos 8 caracteres" }
-  ),
-  phones: z.string().min(10,
-    { message: "El telefono debe tener al menos 10 caracteres" }
-  ),
-  email: z.string().email(),
-  reason: z.string(),
-  message: z.string().min(20,
-    { message: "El mensaje debe tener al menos 20 caracteres" }
-  ),
-})
+  names: z.string({
+    required_error: "El nombre es requerido",
+    invalid_type_error: "El nombre debe ser un texto",
+  }).min(8, {
+    message: "El nombre debe tener al menos 8 caracteres",
+  }),
+  phones: z.string({
+    required_error: "El teléfono es requerido",
+  })
+    .min(10, {
+      message: "El teléfono debe tener al menos 10 dígitos",
+    })
+    .regex(/^(809|829|849)\d{7}$/, {
+      message: "El número de teléfono debe ser válido en República Dominicana",
+    })
+    .transform(formatPhoneNumber), // Aplicamos la transformación
+  email: z.string({
+    required_error: "El correo es requerido",
+  }).email({
+    message: "El correo no es válido",
+  }),
+  reason: z.string({
+    required_error: "El motivo es requerido",
+  }),
+  message: z.string({
+    required_error: "El mensaje es requerido",
+  }).min(20, {
+    message: "El mensaje debe tener al menos 20 caracteres",
+  }),
+});
+
 
 //Checkout Form Schema  
 export const checkFormSchema = z.object({

@@ -51,9 +51,9 @@ export default function Home() {
               key={index}
               className="card flex flex-col p-6 basis-1/4 items-center justify-center"
             >
-              <div className="flex flex-col grayscale text-lg contrast-125 hover:grayscale-0 hover:scale-105 transition ease-in-out duration-200">
+              <div className="flex flex-col text-lg contrast-125 hover:brightness-110 hover:pb-2 hover:scale-105 transition ease-in-out duration-200">
                 <Image
-                  className="contrast-125 rounded-3xl drop-shadow-lg max-h-[300px] max-w-[300px] object-contain"
+                  className="rounded-full drop-shadow-lg max-h-[300px] max-w-[300px] object-contain"
                   key={producto.id}
                   src={producto.portrait}
                   alt="..."
@@ -65,7 +65,7 @@ export default function Home() {
                   {producto.name}
                 </h1>
               </div>
-              <p className="text-[12px] w-3/4 text-blue-900 text-center text-ellipsis line-clamp-3">
+              <p className="text-[12px] w-3/4 text-gray-700 text-center text-ellipsis line-clamp-3">
                 {producto.description}
               </p>
             </div>

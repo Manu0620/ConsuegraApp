@@ -77,18 +77,18 @@ export const CartCard = (cartCard: CartCard) => {
     >
       <img
         src={cartCard.image}
-        className="w-28 h-28 aspect-square contrast-125 border border-red-800 rounded-3xl basis-1/4 object-fit"
+        className="w-28 h-28 aspect-square bg-white p-3 border border-red-800 rounded-3xl basis-1/4 object-contain"
       />
-      <div className="flex flex-col space-y-2 basis-3/4 leading-none">
-        <Label className="text-black font-bold">{cartCard.name}</Label>
-        <Label className="flex flex-col text-red-800 text-sm font-bold">
+      <div className="flex flex-col basis-3/4">
+        <Label className="text-black font-bold text-[12px]">{cartCard.name}</Label>
+        <Label className="flex flex-row gap-2 text-red-800 text-sm font-bold">
           {currencyFormat(parseFloat(cartCard.price))}
-          <span className="text-black font-normal text-[12px]">Unidad</span>
+          <span className="text-black font-normal text-[12px]">| Unidad</span>
         </Label>
-        <div className="card-footer flex flex-row w-full items-center text-sm">
+        <div className="card-footer flex flex-row w-full py-1 items-center text-sm">
           <Button
             onClick={handleDecrement}
-            className="w-fit text-red-800 font-bold border border-red-800 hover:bg-red-800/75 hover:text-white rounded-full hover:scale-105 transition ease-in-out duration-200 outline-none"
+            className="text-red-800 font-bold border border-red-800 hover:bg-red-800/75 hover:text-white rounded-full hover:scale-105 transition ease-in-out duration-200 outline-none"
           >
             -
           </Button>
@@ -100,7 +100,7 @@ export const CartCard = (cartCard: CartCard) => {
           />
           <Button
             onClick={handleIncrement}
-            className="w-fit text-red-800 font-bold border border-red-800 hover:bg-red-800/75 hover:text-white rounded-full hover:scale-105 transition ease-in-out duration-200 outline-none"
+            className="text-red-800 font-bold border border-red-800 hover:bg-red-800/75 hover:text-white rounded-full hover:scale-105 transition ease-in-out duration-200 outline-none"
           >
             +
           </Button>

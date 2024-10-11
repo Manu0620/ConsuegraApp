@@ -19,11 +19,11 @@ export const Principle = (props: Props) => {
                             </div>
                             <div className="flex flex-col">
                                 <h1 
-                                    className="flex text-red-800 font-bold text-pretty pb-3 mobilesm:text-xl mobile:text-xl md:text-2xl lg:text-2xl">
+                                    className="flex text-red-800 font-semibold text-pretty pb-3 mobilesm:text-xl mobile:text-xl md:text-2xl lg:text-2xl">
                                     {props.title}
                                 </h1>
                                 <p 
-                                    className="flex text-red-800/90 font-light">
+                                    className="flex text-gray-700 font-light">
                                     {props.description}
                                 </p>
                             </div>
@@ -40,11 +40,11 @@ export const Principle = (props: Props) => {
                             </div>
                             <div className="flex flex-col">
                                 <h1 
-                                    className="flex text-red-800 font-bold text-pretty pb-3 mobilesm:text-xl mobile:text-xl md:text-2xl lg:text-2xl">
+                                    className="flex text-red-800 font-semibold text-pretty pb-3 mobilesm:text-xl mobile:text-xl md:text-2xl lg:text-2xl">
                                     {props.title}
                                 </h1>
                                 <p 
-                                    className="flex text-red-800/90 font-light">
+                                    className="flex text-gray-700 font-light">
                                     {props.description}
                                 </p>
                             </div>

@@ -22,32 +22,69 @@ import {
 
 import { IoIosSend } from "react-icons/io"
 
+
 const formSchema = z.object({
-  names: z.string().min(8, 
+  names: z.string(
+    { message: "El nombre es requerido" }
+  ).min(8, 
     { message: "El nombre debe tener al menos 8 caracteres" }
   ),
-  email: z.string().email(),
-  message: z.string().min(20,
+  email: z.string(
+    { message: "El correo es requerido" }
+  ).email(
+    { message: "El correo no es válido" }
+  ),
+  message: z.string(
+    { message: "El mensaje es requerido" }
+  ).min(5,
     { message: "El mensaje debe tener al menos 20 caracteres" }
   ),
 })
 
+interface FormData {
+  names: string;
+  email: string;
+  message: string;
+}
+
 export function FooterForm() {
-    const form = useForm({
+    const form = useForm<FormData>({
       resolver: zodResolver(formSchema),
+      mode: 'onBlur',
     })
 
-    const onSubmit = form.handleSubmit((data) => {
+    const formReset = async () => {
+      await form.reset({
+        names: "",
+        email: "",
+        message: "",
+      });
+    };
+
+    const onSubmit = form.handleSubmit( async (data) => {
       console.log(data)
-      toast({
-        title: "Exito !",
-        description: (
-            <p>
-                Tu mensaje ha sido enviado con exito. <br />
-                Nos pondremos en contacto contigo lo antes posible.
-            </p>
-        ),
+
+      const res = await fetch('/api/send-mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       })
+
+      if(res.ok){
+        formReset();
+        toast({
+          title: "Éxito !",
+          description: (
+              <p>
+                  Tu mensaje ha sido enviado con éxito. <br />
+                  Nos pondremos en contacto contigo lo antes posible.
+              </p>
+          ),
+          
+        })
+      }
     })
 
     return (

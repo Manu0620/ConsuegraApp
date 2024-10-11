@@ -61,9 +61,9 @@ export const CartSheet = () => {
         </ScrollArea>
         <SheetFooter className="border-t-2 p-3 border-red-700">
           {/* <Button className="text-red-800 w-full font-bold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white hover:scale-105 transition ease-in-out duration-200 outline-none flex items-center">
-                        <GrSend className="mr-2" /> Enviar cotizacion
-                    </Button> */}
-          <CheckoutForm />
+                <GrSend className="mr-2" /> Enviar cotizacion
+            </Button> */}
+            <CheckoutForm />
         </SheetFooter>
       </SheetContent>
     </Sheet>

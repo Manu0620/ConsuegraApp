@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { FaBookOpen, FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 import { Branchs } from '@/components/constants/branchs';
+import { Mail } from '@/components/email/contact-mail';
 
 export default function Contacto() {
   return (
@@ -36,25 +37,25 @@ export default function Contacto() {
 
             <div className="social-media flex flex-row py-2 border-t border-white w-full text-pretty text-white text-lg font-light">
               <Link
-                href="https://www.instagram.com/rmconsuegrasrl/"
-                className="mx-1 p-3 h-fit flex items-center rounded-full hover:bg-pink-600/25"
-                target="_blank"
-              >
-                <FaInstagram size={22} />
-              </Link>
-              <Link
-                href="https://www.facebook.com/rmconsuegra"
-                className="mx-1 p-3 h-fit flex items-center rounded-full hover:bg-blue-600/25"
-                target="_blank"
-              >
-                <FaFacebookF size={22} />
-              </Link>
-              <Link
-                href="/documents/catalogo-productos-consuegra.pdf"
-                className="mx-1 p-3 h-fit flex items-center rounded-full hover:bg-red-700/25"
-                target="_blank"
-              >
-                <FaBookOpen size={22} />
+                  href="https://www.instagram.com/rmconsuegrasrl/"
+                  className="mx-1 p-4 h-fit flex items-center rounded-full hover:bg-white/25"
+                  target="_blank"
+                >
+                  <FaInstagram size={22} />
+                </Link>
+                <Link
+                  href="https://www.facebook.com/rmconsuegra"
+                  className="mx-1 p-4 h-fit flex items-center rounded-full hover:bg-white/25"
+                  target="_blank"
+                >
+                  <FaFacebookF size={22} />
+                </Link>
+                <Link
+                  href="/documents/catalogo-productos-consuegra.pdf"
+                  className="mx-1 p-4 h-fit flex items-center rounded-full hover:bg-white/25"
+                  target="_blank"
+                >
+                  <FaBookOpen size={22} />
               </Link>
             </div>
           </div>
