@@ -29,7 +29,7 @@ export function Mail (props: Props) {
                <Text className="font-semibold">Correo del cliente: <span className="font-medium">{email}</span></Text>
                <Text className="font-semibold">Teléfono del cliente: <span className="font-medium">{phones}</span></Text>
                <Text className="font-semibold">Motivo de contacto: <span className="font-medium">{reason}</span></Text>
-               <Button className="px-4 py-3 bg-red-800 text-red-100 rounded-xl" href="http://localhost:3000">Ir a la pagina</Button>
+               <Button className="px-4 py-3 bg-red-800 text-red-100 rounded-xl" href="https://consuegra-app.vercel.app">Ir a la pagina</Button>
             </Section>
          </Container>
       </Tailwind>
