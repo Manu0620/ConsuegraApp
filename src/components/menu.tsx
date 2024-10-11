@@ -21,13 +21,6 @@ export const Menu = () => {
                 <CartSheet />
             </div>
             <div className='nav-bar mt-[-60px] relative z-40 flex flex-row w-full h-36 justify-center items-center bg-red-700 border-b-2 border-white'>
-                {/* {<ul className='pt-14 flex flex-row text-white text-pretty font-medium lg:text-[16px] md:text-md sm:text-sm mobile:text-sm mobilesm:text-[12px]'>
-                    {
-                        menuItems.map((item, index) => (
-                            <MenuItem key={index} icon={item.icon} name={item.title} hasIcon={item.hasIcon} url={item.href} blank={item.blank}/>
-                        ))
-                    }
-                </ul>} */}
                 <MenuItems />
             </div>
             

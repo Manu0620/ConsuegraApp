@@ -79,7 +79,7 @@ export function ContactForm() {
       },
       body: JSON.stringify({
         ...data,
-        html: emailHtml
+        html: emailHtml,
       }),
     });
 
