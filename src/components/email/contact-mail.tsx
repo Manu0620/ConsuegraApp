@@ -24,7 +24,7 @@ export function Mail (props: Props) {
                <Heading as="h2">Mensaje de contacto de {names}</Heading>
             </Section>
             <Section className="p-10 font-medium leading-none">
-               <Img src='/LogoMono.png' alt="Logo" className="mx-auto"/>
+               <Img src='https://consuegra-app.vercel.app/LogoMono.png' alt="Logo" className="mx-auto"/>
                <Text>{message}</Text>
                <Text className="font-semibold">Correo del cliente: <span className="font-medium">{email}</span></Text>
                <Text className="font-semibold">Teléfono del cliente: <span className="font-medium">{phones}</span></Text>
