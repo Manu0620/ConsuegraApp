@@ -5,22 +5,43 @@ import { toast } from '@/components/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ProductCarousel } from '@/components/view-products/images-carousel';
-import { productos } from '@/data/productos';
+import { Products } from '@/app/api/models/products';
 import { currencyFormat } from '@/lib/utils';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaOpencart } from 'react-icons/fa';
+import { LuLoader2 } from 'react-icons/lu';
 
 export default function ProductDetails() {
   const { addToCart, cartItems, updateQuantity } = useCart();
+  const [product, setProduct] = useState<Products>();
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
   const params = useParams();
-  const productId = params.id;
-  
-  const product = productos.find(
-    (product) => product.id.toString() === productId,
-  );
+  const productId = params.id.toString();
+
+  useEffect(() => {
+    if (productId) {
+      fetchProduct(productId);
+    }
+  }, [productId]);
+
+  const fetchProduct = async (productId: string) => {
+    setLoading(true);
+    const res = await fetch(`/api/products?id=${productId}`);
+    const data = await res.json();
+    setProduct(data);
+    setLoading(false);
+  }
+
+  if (loading) {
+    return (
+      <div className="flex flex-col bg-white items-center justify-center min-h-screen">
+        <LuLoader2 className="text-red-800 animate-spin w-10 h-10" />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -77,35 +98,34 @@ export default function ProductDetails() {
 
     addToCart({
       id: product.id.toString(),
-      name: product.name,
-      price: product.price,
-      portrait: product.portrait,
+      name: product.description ?? 'Descripción no disponible',
+      price: product.price.toString(),
+      portrait: product.image ?? '/LogoMono.png',
       quantity: quantity,
     });
 
     toast({
       title: 'Éxito!',
-      description: <p>{product.name} ha sido agregado al carrito</p>,
+      description: <p>{product.description} ha sido agregado al carrito</p>,
     });
   };
 
   return (
     <main className="flex flex-col items-center p-0 bg-red">
       <section className="hero-products flex flex-col w-full py-12 px-6 bg-white border-b border-red-700 mt-48 shadow-md text-start items-center overflow-hidden">
-        <div className="flex flex-row flex-wrap gap-12 w-10/12 text-start justify-center">
-          <ProductCarousel images={product ? product.images : []} />
+          {/* <ProductCarousel images={product ? product.image : []} /> */}
           <ScrollArea className="min-h-20 flex flex-col space-y-3">
-            <h1 className="flex flex-col text-red-800 font-bold leading-snug mobilesm:text-xl mobile:text-xl sm:text-2xl md:text-3xl lg:text-3xl">
-              {product ? product.name : 'Producto no encontrado'}
-              <span className="text-[16px] font-normal text-black">
-                Categoría
+            <h1 className="flex flex-col text-red-800 font-bold leading-none mobilesm:text-xl mobile:text-xl sm:text-2xl md:text-3xl lg:text-3xl">
+              {product ? product.description : 'Producto no encontrado'}
+              <span className="text-[14px] font-normal text-black">
+                {product ? product.class + ' ' + product.brand : ''}
               </span>
             </h1>
             <h1 className="flex flex-col text-black font-bold text-xl">
-              {product ? currencyFormat(parseFloat(product.price)) : ''}
+              {product ? currencyFormat(product.price) : ''}
               <span className="text-sm font-light text-red-800">Unidad</span>
             </h1>
-            {product?.images ? (
+            {/* {product?.images ? (
               <div className="flex flex-row border-t-2 border-red-700 py-3 ">
                 {product.images.map((image, index) => (
                   <img
@@ -115,10 +135,12 @@ export default function ProductDetails() {
                   />
                 ))}
               </div>
-            ) : null}
+            ) : null} */}
             <p className="text-green-700 text-sm font-medium">In Stock</p>
             <p className="text-gray-700 font-light max-w-lg">
-              {product ? product.description : ''}
+              {product.description && product.description.length > 10 ? 
+                  `${product.description} \n ${product.brand}`
+                : ''}
             </p>
             <div className="flex flex-row items-center py-2">
               <div className="flex flex-row pr-2">
@@ -151,7 +173,6 @@ export default function ProductDetails() {
               </div>
             </div>
           </ScrollArea>
-        </div>
       </section>
     </main>
   );

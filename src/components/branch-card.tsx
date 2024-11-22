@@ -21,7 +21,7 @@ export const BranchCard = (props: Props) =>{
             key={props.name} 
             className="flex flex-col p-5 overflow-hidden hover:scale-105 transition ease-in-out duration-100 lg:basis-1/3 md:basis-1/2 sm:basis-full mobile:basis-full mobilesm:basis-full">
             <Link href={props.url} >
-                <img key={props.name} src={props.image} alt="..." className="drop-shadow-xl contrast-125  border-b-2 border-b-red-800 min-w-full min-h-72 max-h-72 rounded-tl-3xl rounded-tr-3xl overflow-hidden object-cover "/>
+                <img key={props.name} src={props.image} alt="..." className="drop-shadow-xl contrast-125 border-b-2 border-b-red-800 min-w-full min-h-72 max-h-72 rounded-3xl overflow-hidden object-cover "/>
             </Link>
             <div key={props.name} className="w-full p-3">
                 <span className="flex flex-row items-center text-pretty">

@@ -1,3 +1,4 @@
+import { File } from "buffer";
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { z } from "zod"
@@ -7,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
-const formatPhoneNumber = (phone: string) => {
+export const formatPhoneNumber = (phone: string) => {
   // Limpiamos el número eliminando espacios, guiones, etc.
   const cleaned = phone.replace(/\D/g, '');
 
@@ -86,8 +87,7 @@ export const applyFormSchema = z.object({
 });
 
 
-//Checkout Form Schema  
-export const checkFormSchema = z.object({
+export const customerFormSchema = z.object({
   names: z.string({
     message: "El nombre es requerido"
   }).min(3, 
@@ -98,44 +98,50 @@ export const checkFormSchema = z.object({
   ).min(3,  
     { message: "El apellido debe tener al menos 3 caracteres" }
   ),
-  address1: z.string(
-    { message: "La dirección es requerida" }
-  ).min(10,
-    { message: "La dirección debe tener al menos 10 caracteres" }
-  ),
-  address2: z.string().optional(),
-  phone: z.string(
-    { message: "El teléfono es requerido" }
-  ).min(10,
-    { message: "El teléfono debe tener al menos 10 caracteres" }
-  ),
   email: z.string(
     { message: "El correo es requerido" }
   ).email(),
-  advice: z.string(
-    { message: "La nota es requerida" }
-  ).min(20,
-    { message: "La nota debe tener al menos 20 caracteres" }
-  ).optional(),
+  phone: z.string(
+    {message: "El teléfono es requerido", })
+    .min(10, {
+      message: "El teléfono debe tener al menos 10 dígitos",
+    })
+    .regex(/^\(?(809|829|849)\)?\s?\d{3}-?\d{4}$/, {
+      message: "El número de teléfono debe ser válido en República Dominicana",
+    })
+    .transform(formatPhoneNumber).optional(), // Aplicamos la transformación
+})
+
+export const AddressSchema = z.object({
+  name: z.string().min(1, { message: "El nombre es obligatorio." }),
+  address_line_1: z.string().min(1, { message: "La dirección principal es obligatoria." }),
+  address_line_2: z.string().optional(),
+  city: z.string().min(1, { message: "La ciudad es obligatoria." }),
+  state: z.string().min(1, { message: "El estado/provincia es obligatorio." }),
+  postalCode: z.string().min(1, { message: "El código postal es obligatorio." }),
+  country: z.string().min(1, { message: "El país es obligatorio." }),
+  advice: z.string().optional(),
+  createdAt: z.date().optional(), // Se puede omitir porque se genera automáticamente
+});
+
+//Checkout Form Schema  
+export const verificationFormSchema = z.object({
+  email: z.string(
+    { message: "El correo es requerido" }
+  ).email(),
+
 })
 
 
 //Filters Form Schema
 export const filtersFormSchema = z.object({
-  search: z.string(
-    { message: "La búsqueda es requerida" }
-  ).optional(),
-  byCategory: z.string(
-    { message: "La categoría es requerida" }
-  ).optional(),
-  desde: z.string().optional().refine(
-    (value) => value === undefined || !isNaN(Number(value)) && Number(value) >= 0,
-    { message: "El precio debe ser un número mayor o igual a 0" }
-  ),
-  hasta: z.string().optional().refine(
-    (value) => value === undefined || !isNaN(Number(value)) && Number(value) >= 0,
-    { message: "El precio debe ser un número mayor o igual a 0" }
-  )
+  search: z.string().optional(),
+  byCategory: z.string().optional(),
+  desde: z.string().optional(),
+  hasta: z.string().optional(),
+}).refine((data) => (data.desde !== undefined && data.hasta !== undefined ? data.desde <= data.hasta : true), {
+  message: "El valor de 'desde' no puede ser mayor que 'hasta'",
+  path: ["hasta"], // Añadir error en el campo "hasta"
 }).superRefine((data, context) => {
   if (data.desde && data.hasta && Number(data.hasta) < Number(data.desde)) {
     context.addIssue({
@@ -148,10 +154,43 @@ export const filtersFormSchema = z.object({
 
 //Login Form Schema
 export const loginFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8,
+  email: z.string(
+    { message: "El correo es requerido" }
+  ).email(
+    { message: "El correo no es válido" }
+  ),
+  password: z.string(
+    { message: "La contraseña es requerida" }
+  ).min(8,
     { message: "La contraseña debe tener al menos 8 caracteres" }
   ),
+})
+
+//Registration Form Schema
+export const registrationFormSchema = z.object({
+  name: z.string(
+    { message: "El nombre es requerido" }
+  ).min(3,
+    { message: "El nombre debe tener al menos 3 caracteres" }
+  ),
+  email: z.string(
+    { message: "El correo es requerido" }
+  ).email(
+    { message: "El correo no es válido" }
+  ),
+  password: z.string(
+    { message: "La contraseña es requerida" }
+  ).min(8,
+    { message: "La contraseña debe tener al menos 8 caracteres" }
+  ),
+    confirmPassword: z.string(
+      { message: "La confirmación de contraseña es requerida" }
+    ).min(8,
+      { message: "La confirmación de contraseña debe tener al menos 8 caracteres" }
+    ),
+  }).refine((data) => data.password === data.confirmPassword, {
+    message: "Las contraseñas no coinciden",
+    path: ["confirmPassword"],
 })
 
 //Convertidor de texto a formato de moneda en pesos dominicanos

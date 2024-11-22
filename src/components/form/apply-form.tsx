@@ -35,9 +35,11 @@ import { render } from "@react-email/components";
 import { undefined } from "zod";
 import { useState } from "react";
 import { LuLoader2 } from "react-icons/lu";
+// Removed incorrect import
 
 export function ApplyForm() {
   const [loading, setLoading] = useState(false);
+  const [cv, setCv] = useState<File | undefined>();
 
   const form = useForm({
     resolver: zodResolver(applyFormSchema),
@@ -46,19 +48,18 @@ export function ApplyForm() {
 
   const { toast } = useToast();
 
-  const formReset = async () => {
-    await form.reset({
+  const formReset = () => {
+    form.reset({
       names: '',
       phones: '',
       email: '',
       jobs: undefined,
       message: '',
+      cv: undefined,
     });
   }
 
   const onSubmit = form.handleSubmit(async (data) => {
-
-    console.log(data);
 
     const emailHtml = await render(
       <ApplyMail 
@@ -83,14 +84,13 @@ export function ApplyForm() {
         email: data.email,
         jobs: data.jobs,
         message: data.message,
-        cv: data.cv,
         html: emailHtml,
       })
     })
 
     if (res.ok) {
       setLoading(false);
-      formReset();
+      await formReset();
       toast({
         title: "Éxito !",
         description: (
@@ -210,24 +210,13 @@ export function ApplyForm() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="cv"
-              render={({ field }) => (
-                <FormItem>
-                  <Label className="text-red-800 font-bold">Adjuntar CV</Label>
-                  <FormControl className="border-white text-white hover:bg-white/25 font-medium rounded-xl">
-                    <Input
-                      type="file"
-                      accept=".pdf"
-                      required
-                      className="grow border-red-800 focus:bg-red-800/25 text-red-800 font-medium rounded-xl"
-                      onChange={field.onChange} />
-                  </FormControl>
-                  <FormMessage className="text-red-700" />
-                </FormItem>
-              )}
-            />
+            <Input
+              id="cv"
+              type="file"
+              accept=".pdf"
+              required
+              className="grow border-red-800 focus:bg-red-800/25 self-end text-red-800 font-medium rounded-xl"
+              />
           </div>
         </div>
         <Button

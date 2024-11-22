@@ -7,6 +7,7 @@ import { Menu } from "@/components/menu";
 
 import { CartProvider } from "@/components/cart/cart-context"; 
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { UserProvider } from "@/components/auth/userContext";
 
 const inter = GeistSans;
 
@@ -25,19 +26,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (  
+    <UserProvider>
       <CartProvider>
-            <html lang="en">
-                <body className={inter.className}>
-                    <Menu />
-                    {children}
-                    <Footer />
-                    <Toaster />
-                    <WhatsAppButton 
-                      className="fixed bottom-5 left-5"
-                      phone="+18093372526"
-                      message="Hola, vengo desde su pagina pagina https://consuegra-app.vercel.app/"/>
-                </body>
-            </html>
-        </CartProvider>
+          <html lang="en">
+              <body className={inter.className}>
+                  <Menu />
+                  {children}
+                  <Footer />
+                  <Toaster />
+                  <WhatsAppButton 
+                    className="fixed bottom-5 left-5 z-50"
+                    phone="+18093372526"
+                    message="Hola, vengo desde su pagina pagina https://consuegra-app.vercel.app/" />
+              </body>
+          </html>
+      </CartProvider>
+    </UserProvider>
   );
 }

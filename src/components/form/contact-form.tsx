@@ -119,13 +119,13 @@ export function ContactForm() {
           name="names"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white font-semibold">
+              <FormLabel className="text-red-50 font-semibold">
                 Nombre completo
               </FormLabel>
-              <FormControl className="border-white focus:bg-white/25 text-white font-medium rounded-xl">
+              <FormControl className="border-white focus:bg-white/25 text-red-50 font-medium rounded-xl">
                 <Input placeholder="Ingrese su nombre completo..." {...field} />
               </FormControl>
-              <FormMessage className="text-white" />
+              <FormMessage className="text-red-50" />
             </FormItem>
           )}
         />
@@ -134,13 +134,13 @@ export function ContactForm() {
           name="phones"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white font-semibold">
+              <FormLabel className="text-red-50 font-semibold">
                 Teléfono/Celular
               </FormLabel>
-              <FormControl className="border-white focus:bg-white/25 text-white font-medium rounded-xl">
+              <FormControl className="border-white focus:bg-white/25 text-red-50 font-medium rounded-xl">
                 <Input placeholder="Ingrese su teléfono/celular..." {...field} />
               </FormControl>
-              <FormMessage className="text-white" />
+              <FormMessage className="text-red-50" />
             </FormItem>
           )}
         />
@@ -149,11 +149,11 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white font-semibold">Correo</FormLabel>
-              <FormControl className="border-white focus:bg-white/25 text-white font-medium rounded-xl">
+              <FormLabel className="text-red-50 font-semibold">Correo</FormLabel>
+              <FormControl className="border-white focus:bg-white/25 text-red-50 font-medium rounded-xl">
                 <Input placeholder="Ingrese su correo electrónico..." {...field} />
               </FormControl>
-              <FormMessage className="text-white" />
+              <FormMessage className="text-red-50" />
             </FormItem>
           )}
         />
@@ -162,11 +162,11 @@ export function ContactForm() {
           name="reason"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white font-semibold">
+              <FormLabel className="text-red-50 font-semibold">
                 Porque nos contacta
               </FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <SelectTrigger className="w-4/12 border-white hover:bg-red-800/25 text-white font-medium rounded-xl">
+                <SelectTrigger className="w-4/12 border-white hover:bg-red-800/25 text-red-50 font-medium rounded-xl">
                   <SelectValue placeholder="Seleccione una razón.." />
                 </SelectTrigger>
                 <SelectContent className="rounded-xl text-red-800 bg-red-100">
@@ -178,7 +178,7 @@ export function ContactForm() {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <FormMessage className="text-white" />
+              <FormMessage className="text-red-50" />
             </FormItem>
           )}
         />
@@ -187,8 +187,8 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white font-semibold">Mensaje</FormLabel>
-              <FormControl className="border-white text-white hover:bg-white/25 font-medium rounded-xl">
+              <FormLabel className="text-red-50 font-semibold">Mensaje</FormLabel>
+              <FormControl className="border-white text-red-50 hover:bg-white/25 font-medium rounded-xl">
                 <Textarea
                   placeholder="Esperamos tu mensaje..."
                   className="resize-none"
@@ -196,7 +196,7 @@ export function ContactForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-white" />
+              <FormMessage className="text-red-50" />
             </FormItem>
           )}
         />

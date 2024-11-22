@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { set, z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/form"
 
 import { IoIosSend } from "react-icons/io"
+import { LuLoader2 } from "react-icons/lu"
+import { useState } from "react"
 
 
 const formSchema = z.object({
@@ -48,6 +50,7 @@ interface FormData {
 }
 
 export function FooterForm() {
+    const [loading, setLoading] = useState(false);
     const form = useForm<FormData>({
       resolver: zodResolver(formSchema),
       mode: 'onBlur',
@@ -64,6 +67,7 @@ export function FooterForm() {
     const onSubmit = form.handleSubmit( async (data) => {
       console.log(data)
 
+      setLoading(true)
       const res = await fetch('/api/send-mail', {
         method: 'POST',
         headers: {
@@ -74,6 +78,7 @@ export function FooterForm() {
 
       if(res.ok){
         formReset();
+        setLoading(false);
         toast({
           title: "Éxito !",
           description: (
@@ -135,7 +140,7 @@ export function FooterForm() {
             <Button 
                 type="submit"
                 className="flex border-white text-red-800 items-center justify-center self-center bg-white/75 hover:bg-white hover:scale-105 transition ease-in-out duration-200 focus:outline-none font-bold rounded-xl text-sm px-6 py-2">
-                <IoIosSend size={18} className='mr-2'/> Enviar
+                {loading ? <LuLoader2 size={18} className='mr-2 animate-spin'/> :  <IoIosSend size={18} className='mr-2'/> } Enviar
             </Button>
         </form>
       </Form>

@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de User
+model User {
+  user_id            String   @id @default(uuid())
+  name               String
+  email              String   @unique
+  password           String   // Encrypted password
+  isVerified         Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  orders             Order[]  // Orders associated with User
+  cart               Cart?    // Single Cart associated with User
+  verificationCodes  VerificationCode[] 
+
+  Person Person[]
+}
+
+// Modelo de Person
+model Person {
+  person_id    String           @id @default(uuid())     // Unique identifier
+  user         User             @relation(fields: [user_id], references: [user_id])  
+  user_id      String           @unique
+  name         String                                   // Person's name
+  email        String           @unique                 // Unique email
+  phone        String                                  // Optional phone number
+  created_at   DateTime         @default(now())         // Creation date
+  status       Boolean          @default(true)          // Active status
+  addresses    Address[]
+}
+
+// Modelo de Address
+model Address {
+  id           String   @id @default(uuid())
+  person       Person   @relation(fields: [person_id], references: [person_id])
+  person_id    String
+  name        String  
+  address_line_1      String
+  address_line_2      String?
+  city         String
+  state        String
+  postalCode   String
+  country      String
+  advice      String?
+  createdAt    DateTime @default(now())
+}
+
+
+// Modelo de Cart
+model Cart {
+  cart_id    String   @id @default(uuid())
+  user       User     @relation(fields: [user_id], references: [user_id])
+  user_id    String   @unique // Ensure one-to-one relationship by making user_id unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  cartItems  CartItem[]
+}
+
+// Modelo de Order
+model Order {
+  order_id    String   @id @default(uuid())
+  user        User     @relation(fields: [user_id], references: [user_id])
+  user_id     String   // Relation with User
+  created_at  DateTime @default(now())
+  total       Decimal  @default(0.00)
+  status      String   @default("pending")
+  orderItems  OrderItem[]
+}
+
+// Modelo de Product
+model Product {
+  id                   String    @id @default(uuid()) @map("product_id")
+  description          String    // Product description
+  class                String    // Product class
+  brand                String?   // Optional brand
+  inventory            Int?      // Available inventory
+  image                String?   // Optional image URL
+  status               Boolean?  @default(true)  // Active/inactive status
+  price                Float     // Product price
+  minimumPrice         Float     // Minimum price
+  orderItems           OrderItem[]
+  cartItems            CartItem[]
+}
+
+// Modelo de OrderItem
+model OrderItem {
+  order_item_id String   @id @default(uuid())
+  order         Order    @relation(fields: [order_id], references: [order_id])
+  order_id      String   // Relation with Order
+  product       Product  @relation(fields: [product_id], references: [id])
+  product_id    String   // Relation with Product
+  quantity      Int      // Quantity of products in the order
+  price         Decimal  // Product price in this order line
+  total         Decimal  // Line total (quantity * price)
+}
+
+// Modelo de CartItem
+model CartItem {
+  cart_item_id String   @id @default(uuid())
+  cart         Cart     @relation(fields: [cart_id], references: [cart_id])
+  cart_id      String   // Relation with Cart
+  product      Product  @relation(fields: [product_id], references: [id])
+  product_id   String   // Relation with Product
+  quantity     Int      @default(1) // Quantity of product in the cart
+  created_at   DateTime @default(now())
+}
+
+// Modelo de VerificationCode
+model VerificationCode {
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [user_id], references: [user_id])
+  user_id      String
+  code         String    // Verification code
+  created_at   DateTime  @default(now()) // Creation date
+  expires_at   DateTime  // Expiration date
+  used         Boolean   @default(false) // Used status
+}
+
+model State {
+  id        Int      @id @default(autoincrement()) // ID autoincremental
+  name      String   @unique                      // Nombre de la provincia
+  createdAt DateTime @default(now())              // Fecha de creación
+}

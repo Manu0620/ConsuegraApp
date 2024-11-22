@@ -3,7 +3,8 @@ import nodemailer from 'nodemailer';
 
 export const POST = async (req: Request) => {
    try {
-      const { names, email, html, cv } = await req.json();
+      const { names, email, html } = await req.json();
+
 
       // Configura el transporte con nodeMailer
       const transporter = nodemailer.createTransport({
@@ -25,7 +26,7 @@ export const POST = async (req: Request) => {
          html: html,
          attachements: [
             {
-               filename: 'Curriculum Vitae.pdf',
+               filename: 'CurriculumVitae.pdf',
                path: process.env.APP_URL + "/documents/catalogo-productos-consuegra.pdf",
             }
          ],

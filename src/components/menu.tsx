@@ -1,29 +1,79 @@
 "use client";
 
 import { Logo } from '@/components/logorm'
-import { MenuItem } from '@/components/menu-item';
-import { menuItems } from '@/components/constants/menu-items';
-import { Button } from "@/components/ui/button"
 import { CartSheet } from '@/components/cart/cart-sheet';
 import { MenuItems } from './menu-items';
+import { LoginForm } from './auth/login-form';
+import { useUser } from './auth/userContext';
+import Link from 'next/link';
+import { FaUserCircle } from 'react-icons/fa';
+import { Button } from './ui/button';
+import { IoExitSharp } from 'react-icons/io5';
+import { UserVerification } from './auth/user-verification';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+  } from "@/components/ui/tooltip"
+import { BsFillPatchCheckFill, BsFillPatchExclamationFill } from 'react-icons/bs';
+
 
 export const Menu = () => {
-    const showProducts = () => {
-        const pdfUrl = '/documents/catalogo-productos-consuegra.pdf'; 
-        window.open(pdfUrl, '_blank'); 
-    }
+
+    const { user, loading, logout, isVerOpen, setIsVerOpen, checkVerification } = useUser();
 
     return(
-        <nav className="flex z-50 w-full flex-col font-medium fixed">
-            <div className='nav-header px-10 relative z-50 flex flex-row w-full bg-white h-28 rounded-br-3xl rounded-bl-3xl overflow-hidden lg:px-10 md:px-10 sm:px-5 mobile:px-3 mobilesm:px-0 mobile:pr-5 mobilesm:pr-5 '>
-                <Logo />
-                {/* <SearchInput /> */} 
-                <CartSheet />
-            </div>
-            <div className='nav-bar mt-[-60px] relative z-40 flex flex-row w-full h-36 justify-center items-center bg-red-700 border-b-2 border-white'>
-                <MenuItems />
-            </div>
-            
-        </nav>
+        <>
+            <nav className="flex z-50 w-full flex-col font-medium fixed">
+                <div className='nav-header px-10 relative z-50 flex flex-row w-full bg-white h-28 rounded-br-3xl rounded-bl-3xl overflow-hidden lg:px-10 md:px-10 sm:px-5 mobile:px-3 mobilesm:px-0 mobile:pr-5 mobilesm:pr-5 '>
+                    <Logo />
+                    {/* <SearchInput /> */}
+                    
+                    {!loading && user && !user.isVerified ? (
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger className='flex self-center h-fit w-fit p-2'>
+                                    <BsFillPatchExclamationFill size={24} className='text-yellow-400' />
+                                </TooltipTrigger>
+                                <TooltipContent className='flex flex-col px-3 py-2 gap-1 box-shadow-lg border-black rounded-xl justify-center items-center bg-yellow-400/90 text-black'>
+                                    <p className='text-[12px] font-bold'>Cuenta sin verificar</p>
+                                    <Button 
+                                        className='p-2 h-8 rounded-xl font-semibold text-[11px] bg-black text-yellow-400 hover:bg-gray-950 hover:scale-105 transition ease-linear duration-100'
+                                        onClick={checkVerification}>
+                                        Verificar
+                                    </Button>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    ): null}
+                    {!loading && (
+                        user ? (
+                            <>
+                                <Button
+                                    className="self-center pr-4 text-red-800 hover:scale-110 hover:text-red-900 transition ease-linear duration-100"
+                                    onClick={logout}>
+                                    <IoExitSharp size={36} />
+                                </Button>
+                                <Link href="#" className="flex flex-row pr-4 gap-2 items-center justify-center">
+                                    <FaUserCircle className="text-red-800 drop-shadow-lg text-3xl" />
+                                    <p className="text-[12px] font-semibold text-red-800">{user.name}</p>
+                                    {!loading && user && user.isVerified ? <BsFillPatchCheckFill size={18} className='text-blue-500' /> : null}
+                                </Link>
+                            </>
+                        ) : (
+                            <LoginForm open={true} />
+                        )
+                    )}
+                    
+                    <CartSheet />
+                </div>
+                <div className='nav-bar flex flex-row mt-[-60px] relative z-40 w-full h-36 justify-center items-center bg-red-800 border-b border-white'>
+                    <MenuItems />
+                </div>
+                
+            </nav>
+            <UserVerification open={isVerOpen}  closeDiag={() => setIsVerOpen(false)}/>
+        </>
     );
 }

@@ -31,18 +31,20 @@ import {
 
 import { Textarea } from '../ui/textarea';
 
-import { checkFormSchema, currencyFormat } from '@/lib/utils';
+import { checkFormSchema, currencyFormat, verificationFormSchema } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaOpencart } from 'react-icons/fa6';
 import { GrSend } from 'react-icons/gr';
-import { IoIosArrowBack, IoIosSend } from 'react-icons/io';
 import { useCart } from '../cart/cart-context';
 import { toast } from '../hooks/use-toast';
 import { Button } from '../ui/button';
-import { ScrollArea } from '../ui/scroll-area';
 import { CustomerInfoForm } from './customer-info-form';
+import { VerificationForm } from './customer-verification';
+import { LuLoader2 } from 'react-icons/lu';
+import { CheckCircle2 } from 'lucide-react';
+import { IoIosSend } from 'react-icons/io';
 
 interface FormData {
   names: string;
@@ -54,54 +56,126 @@ interface FormData {
   advice?: string; // Campo opcional
 }
 
+interface FormDataVerification {
+  email: string;
+}
+
 export const CheckoutForm = () => {
   const [page, setPage] = useState(1);
   const { cartItems, subtotal, clearCart } = useCart();
+  const [verified, setVerified] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Luego, usa el tipo en useForm
-  const form = useForm<FormData>({
+  const customerForm = useForm<FormData>({
     resolver: zodResolver(checkFormSchema),
     mode: 'onBlur',
   });
 
-  const formReset = async () => {
-    await form.reset();
-    await clearCart();
-  };
-
-  // Función para cambiar de página solo si el formulario es válido
-  const handleNextPage = async () => {
-    const isValid = await form.trigger(); // Verifica si los campos son válidos
-    if (isValid) {
-      setPage(page + 1);
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Ups ! Algo salió mal',
-        description: 'Por favor, complete todos los campos correctamente.',
-      });
-    }
-  };
+  const verificationForm = useForm<FormDataVerification>({
+    resolver: zodResolver(verificationFormSchema),
+    mode: 'onBlur',
+  });
 
   const handlePrevPage = () => {
     setPage(page - 1);
   };
 
-  const onSubmit = form.handleSubmit((data: FormData) => {
+  const onSubmitVerification = verificationForm.handleSubmit( async (data: FormDataVerification) => {
+    const isValid = await verificationForm.trigger();
+
+    if(!isValid){
+      toast({
+        variant: 'destructive',
+        title: 'Error !',
+        description:
+          'Por favor, complete los campos requeridos.',
+      });
+      return;
+    }   
+
+
+    const res = await fetch(`/api/customers/${data.email}`);
+
     console.log(data);
 
-    // Reset form and cart
-    formReset();
+    const customer = await res.json();
 
-    //close dialogs
-    setPage(1);
+    setLoading(true);
+    if(res.ok) {
+      setVerified(true);
+      setPage(3);
+      setLoading(false);
+      toast({
+        variant: 'success',
+        title: 'Gracias !',
+        description:
+          'Verificado con éxito.',
+      });
+    } else { 
+      setPage(2);
+      setLoading(false);
+      toast({
+        variant: 'destructive',
+        title: 'Error !',
+        description:
+          'Su correo no se encuentra en nuestros registros.',
+      });
+    }
 
-    toast({
-      variant: 'success',
-      title: 'Gracias !',
-      description:
-        'Tu cotización fue enviada, nos pondremos en contacto contigo.',
+    await verificationForm.reset(
+      { email: '' },
+      { keepValues: false, keepDefaultValues: false }
+    ); 
+  });
+
+  const onSubmitCustomer = customerForm.handleSubmit( async (data: FormData) => {
+    console.log(data);
+    const isValid = await customerForm.trigger();
+
+    if(!isValid){
+      toast({
+        variant: 'destructive',
+        title: 'Error !',
+        description:
+          'Por favor, complete los campos requeridos.',
+      });
+      return;
+    }   
+  
+    const res = await fetch('/api/customers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: data.names + ' ' + data.lastnames,
+        phone: data.phone,
+        email: data.email,
+        address: data.address1 + ' ' + data.address2,
+      }),
     });
+
+
+    setLoading(true);
+    if (res.ok) {
+      let customer = await res.json();
+      setLoading(false);
+      setPage(3);
+      toast({
+        variant: 'success',
+        title: `Bienvenido ${customer.name}!`,
+        description:
+          'Tus datos han sido registrados con éxito.',
+      });
+      // Reset form and cart
+      customerForm.reset(
+        { names: '', lastnames: '', phone: '', email: '', address1: '', address2: '', advice: '' },
+        { keepValues: false, keepDefaultValues: false }
+      );
+    }
+
+    
   });
 
   return (
@@ -113,69 +187,63 @@ export const CheckoutForm = () => {
         <DialogContent className="bg-white text-red-800 border-2 border-red-800 rounded-3xl lg:w-1/2 md:w-8/12 sm:w-11/12 mobile:w-11/12 mobilesm:w-11/12">
           <DialogHeader className="leading-none border-b-2 border-red-800 p-5">
             <DialogTitle className="flex flex-row gap-2 font-semibold">
-              <GrSend /> {page == 1 ? 'Cotización' : 'Confirmación'}
+              <GrSend /> {page == 1 ? 'Verificación' : page == 2 ? 'Cotización' : 'Confirmación'}
             </DialogTitle>
             <DialogDescription className="w-full font-light">
-              {page == 1
-                ? 'Por favor, complete el formulario para enviar su cotización.'
-                : 'Por favor, revise su cotización antes de enviarla.'}
+              {page == 1 ? 'Por favor, complete el proceso de verificación.'
+              : page == 2 ? 'Por favor, complete el formulario para enviar su cotización.'
+              : 'Por favor, revise su cotización antes de enviarla.'}
             </DialogDescription>
           </DialogHeader>
-          {page == 1 ? (
-            <CustomerInfoForm form={form} onSubmit={onSubmit} />
-          ) : page == 2 ? (
+          {page == 2 ? (
+            <VerificationForm form={verificationForm} onSubmit={onSubmitVerification} loading={loading} />
+          ): page == 1 ? (
+            <CustomerInfoForm form={customerForm} onSubmit={onSubmitCustomer} />
+          ) : page == 3 ? (
             <>
               <DialogTitle className="flex flex-row p-3 font-semibold">
                 <FaOpencart className="mr-2" /> Productos en el carrito
               </DialogTitle>
               
-              <Table className="border-b border-red-800 font-medium">
-                
+              <div className="overflow-y-auto max-h-[200px]">
+                <Table className="border-b border-red-800 font-medium">
                   <TableHeader className="font-bold border-b border-t border-red-800">
                     <TableHead>Nombre</TableHead>
                     <TableHead>Cantidad</TableHead>
-                    <TableHead className="text-right font-semibold">
-                      Precio
-                    </TableHead>
-                    <TableHead className="text-right font-semibold">
-                      Total
-                    </TableHead>
+                    <TableHead className="text-right font-semibold">Precio</TableHead>
+                    <TableHead className="text-right font-semibold">Total</TableHead>
                   </TableHeader>
-                  <ScrollArea className="h-72 w-full">
-                    <TableBody className="text-black text-sm">
-                      {cartItems.map((item, index) => (
-                        <TableRow key={index}>
-                          <TableCell>{item.name}</TableCell>
-                          <TableCell>{item.quantity}</TableCell>
-                          <TableCell className="text-right">
-                            {currencyFormat(parseFloat(item.price))}
-                          </TableCell>
-                          <TableCell className="text-right">
-                            {currencyFormat(item.quantity * parseFloat(item.price))}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </ScrollArea>
+                  <TableBody className="text-black text-[12px]">
+                    {cartItems.map((item, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{item.name}</TableCell>
+                        <TableCell>{item.quantity}</TableCell>
+                        <TableCell className="text-right">
+                          {currencyFormat(parseFloat(item.price))}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          {currencyFormat(item.quantity * parseFloat(item.price))}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
                   <TableFooter className="font-semibold">
                     <TableRow>
                       <TableCell colSpan={2}></TableCell>
                       <TableCell className="text-right">Subtotal</TableCell>
-                      <TableCell className="text-right">
-                        {currencyFormat(subtotal)}
-                      </TableCell>
+                      <TableCell className="text-right">{currencyFormat(subtotal)}</TableCell>
                     </TableRow>
                   </TableFooter>
-                
-              </Table>
+                </Table>
+              </div>
               
-              <Form {...form}>
+              <Form {...customerForm}>
                 <form
-                  onSubmit={onSubmit}
+                  onSubmit={onSubmitCustomer}
                   className="customer-info flex flex-col gap-5 text-start "
                 >
                   <FormField
-                    control={form.control}
+                    control={customerForm.control}
                     name="advice"
                     render={({ field }) => (
                       <FormItem>
@@ -193,38 +261,54 @@ export const CheckoutForm = () => {
                       </FormItem>
                     )}
                   />
-
-                  {page == 2 ? (
-                    <DialogFooter className="flex flex-row flex-wrap-reverse gap-2 justify-end leading-none border-red-800">
-                      <Button
-                        onClick={handlePrevPage}
-                        className="text-red-800 font-semibold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-in-out duration-200"
-                      >
-                        <IoIosArrowBack className="mr-2" /> Atrás
-                      </Button>
-                      <Button
-                        type="submit"
-                        className="text-red-800 w-1/4 font-semibold text-sm border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-in-out duration-200 "
-                      >
-                        <IoIosSend className="mr-2" /> Enviar
-                      </Button>
-                    </DialogFooter>
-                  ) : null}
                 </form>
               </Form>
             </>
           ) : null}
 
-          {page === 1 && (
-            <DialogFooter className="flex flex-row flex-wrap-reverse gap-2 justify-end leading-none border-red-800">
+          <DialogFooter className="border-t border-red-800/25 pt-5">
+            {page == 1 ? (
+                <Form {...verificationForm}>
+                  <Button
+                    onClick={onSubmitVerification}
+                    className="text-red-800 font-semibold text-sm w-1/4 border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-linear duration-200"
+                  >
+                    {loading ? <LuLoader2 className="mr-2 animate-spin"/> : <CheckCircle2 className="mr-2" />} 
+                    Verificar
+                  </Button>
+                </Form>
+            ) : page == 2 ? (
+              <Form {...customerForm}>
+                  <>
+                    {!verified ? (
+                      <Button
+                        onClick={handlePrevPage}
+                        className="text-red-800 font-semibold text-sm w-1/4 border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-linear duration-200"
+                      >
+                        {loading ? <LuLoader2 className="mr-2 animate-spin"/> : <IoIosSend className="mr-2" />} 
+                        Atrás
+                      </Button>
+                    ) : null}
+                    
+                    <Button
+                      onClick={onSubmitCustomer}
+                      className="text-red-800 font-semibold text-sm w-1/4 border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-linear duration-200"
+                    >
+                      {loading ? <LuLoader2 className="mr-2 animate-spin"/> : <IoIosSend className="mr-2" />} 
+                      Enviar
+                    </Button>
+                  </> 
+                </Form>
+            ) : page == 3 ? (
               <Button
-                onClick={handleNextPage}
-                className="text-red-800 font-semibold text-sm w-1/4 border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-in-out duration-200"
+                type='submit'
+                className="text-red-800 self-end font-semibold text-sm w-1/4 border border-red-800 rounded-xl hover:bg-red-800/75 hover:text-white transition ease-in-out duration-200"
               >
-                Siguiente
+                <IoIosSend className="mr-2" /> Enviar cotización
               </Button>
-            </DialogFooter>
-          )}
+            ) : null}
+          </DialogFooter>
+
         </DialogContent>
       </Dialog>
     </>
