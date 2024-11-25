@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
    const { person_id } = person;
 
-   const address = await prisma.address.findUnique({ where: { id: person_id } });
+   const address = await prisma.address.findFirst({ where: { person_id: person_id } });
 
    if (!user_id) {
       return NextResponse.json({ error: "No estas logueado!", message: "Necesitas iniciar sesión para continuar.", status: 401 });

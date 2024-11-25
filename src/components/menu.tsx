@@ -47,25 +47,26 @@ export const Menu = () => {
                             </Tooltip>
                         </TooltipProvider>
                     ): null}
-                    {!loading && (
-                        user ? (
-                            <>
-                                <Button
-                                    className="self-center pr-4 text-red-800 hover:scale-110 hover:text-red-900 transition ease-linear duration-100"
-                                    onClick={logout}>
-                                    <IoExitSharp size={36} />
-                                </Button>
-                                <Link href="#" className="flex flex-row pr-4 gap-2 items-center justify-center">
-                                    <FaUserCircle className="text-red-800 drop-shadow-lg text-3xl" />
-                                    <p className="text-[12px] font-semibold text-red-800">{user.name}</p>
-                                    {!loading && user && user.isVerified ? <BsFillPatchCheckFill size={18} className='text-blue-500' /> : null}
-                                </Link>
-                            </>
-                        ) : (
-                            <LoginForm open={true} />
-                        )
-                    )}
+
+                    {!loading && user ? (
+                        <>
+                            <Button
+                                className="self-center pr-4 text-red-800 hover:scale-110 hover:text-red-900 transition ease-linear duration-100"
+                                onClick={logout}>
+                                <IoExitSharp size={36} />
+                            </Button>
+                            <Link href="#" className="flex flex-row pr-4 gap-2 items-center justify-center">
+                                <FaUserCircle className="text-red-800 drop-shadow-lg text-3xl" />
+                                <p className="text-[12px] font-semibold text-red-800">{user.name}</p>
+                                {!loading && user && user.isVerified ? <BsFillPatchCheckFill size={18} className='text-blue-500' /> : null}
+                            </Link>
+                        </>
+                    ):null}
                     
+                    {!loading && !user ? (
+                        <LoginForm open={false} />
+                    ):null}
+
                     <CartSheet />
                 </div>
                 <div className='nav-bar flex flex-row mt-[-60px] relative z-40 w-full h-36 justify-center items-center bg-red-800 border-b border-white'>

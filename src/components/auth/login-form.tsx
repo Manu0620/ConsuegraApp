@@ -115,7 +115,7 @@ export const LoginForm = (props: { open? : boolean, setOpen?: (open: boolean) =>
                   onClick={() => setIsLogOpen(true)}>
                   <IoEnterSharp size={36} /> 
                </DialogTrigger>
-            ): null}          
+            ): null}        
             <DialogContent className="bg-red-50 text-red-800 border-red-800 rounded-3xl lg:w-3/12 md:w-6/12 sm:w-8/12 mobile:w-10/12 mobilesm:w-11/12">
                <DialogTitle className="flex flex-col items-center justify-center text-start">
                   <img src="/LogoMono.png" alt="Logo" className="flex w-24 p-2"/>

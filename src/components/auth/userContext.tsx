@@ -7,6 +7,7 @@ import { toast } from '../hooks/use-toast';
 import { render } from '@react-email/components';
 import { VerificationEmail } from '../email/verify-mail';
 import { FiCheckCircle } from 'react-icons/fi';
+import { useRouter } from 'next/navigation';
 
 interface UserContextType {
   user: User | null;
@@ -33,6 +34,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   
   const [loading, setLoading] = useState(false);
   const [isVerOpen, setIsVerOpen] = useState(false);
+
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -85,6 +88,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     setPerson(null);  
     setAddress(null);
+    router.push('/');
   };
 
   const sendMail = async (name:string, email: string, code:string) => {
