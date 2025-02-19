@@ -35,7 +35,7 @@ export default function CheckOut() {
          if (person) setPage(2);
          if (address) setPage(3);
       }
-   }, [loading]);
+   }, [loading, address, person]);
 
    const customerForm = useForm<customerData>({
       resolver: zodResolver(customerFormSchema),
