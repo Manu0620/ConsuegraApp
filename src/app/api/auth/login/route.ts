@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { authenticateUser, generateVerificationCode} from "../../services/user_service";
 import { login } from "../../lib/api_helpers";
-
+import { authenticateUser } from "../../services/user_service";
 
 export const POST = async (req: NextRequest) => {
 

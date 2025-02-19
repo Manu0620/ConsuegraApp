@@ -1,12 +1,12 @@
 'use client';
 
 import { Address, Person, User } from '@prisma/client';
-import { createContext, useContext, useState, useEffect } from 'react';
-import { ReactNode } from 'react';
-import { toast } from '../hooks/use-toast';
 import { render } from '@react-email/components';
-import { VerificationEmail } from '../email/verify-mail';
+import { useRouter } from 'next/navigation';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { FiCheckCircle } from 'react-icons/fi';
+import { VerificationEmail } from '../email/verify-mail';
+import { toast } from '../hooks/use-toast';
 
 interface UserContextType {
   user: User | null;
@@ -33,6 +33,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   
   const [loading, setLoading] = useState(false);
   const [isVerOpen, setIsVerOpen] = useState(false);
+
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -85,6 +87,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     setPerson(null);  
     setAddress(null);
+    router.push('/');
   };
 
   const sendMail = async (name:string, email: string, code:string) => {

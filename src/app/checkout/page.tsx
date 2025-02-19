@@ -23,7 +23,7 @@ interface customerData {
 export default function CheckOut(){
    const [sendingCustomer, setSendingCustomer] = useState(false); 
    const [sendingAddress, setSendingAddress] = useState(false);
-   const [page, setPage] = useState(1);
+   const [page, setPage] = useState(0);
    const router = useRouter();
 
    const { 
@@ -36,10 +36,12 @@ export default function CheckOut(){
    } = useUser();
 
    useEffect(() => {
-      if(!loading && !user) router.push('/');
-      if(!loading && person) setPage(2);
-      if(!loading && address) setPage(3);
-   }, []);
+      if(!loading){
+         if(!person) setPage(1);
+         if(person) setPage(2);
+         if(address) setPage(3);
+      }
+   }, [loading]);
 
    const customerForm = useForm<customerData>({
       resolver: zodResolver(customerFormSchema),
@@ -120,7 +122,7 @@ export default function CheckOut(){
                <div className="flex flex-col items-center justify-center w-full h-full">
                   <LuLoader2 className="animate-spin text-6xl text-red-800"/>
                </div>
-            ) : (page == 1 && !person) ? (
+            ) : (page === 1 && !person) ? (
                   <div className="flex flex-col w-1/2 my-12 px-8 py-12 lg:w-1/2 md:w-full md:px-16 sm:w-full mobile:w-full mobilesm:w-full">
                      <h1 
                         className="text-red-800 flex-col font-bold pb-8 text-start self-start mobilesm:text-2xl mobile:text-2xl md:text-3xl lg:text-3xl">
@@ -132,7 +134,7 @@ export default function CheckOut(){
                      </h1>
                      <CustomerInfoForm form={customerForm} onSubmit={submitCustomer} loading={sendingCustomer} />
                   </div>
-            ) : (page == 2 && !address) ? (
+            ) : (page === 2 && !address) ? (
                <div className="flex flex-col h-full my-12 px-8 py-12 lg:w-1/2 md:w-full md:px-16 sm:w-full mobile:w-full mobilesm:w-full">
                   <h1 
                      className="text-red-800 flex-col font-bold pb-8 text-start self-start mobilesm:text-2xl mobile:text-2xl md:text-3xl lg:text-3xl">
@@ -144,7 +146,7 @@ export default function CheckOut(){
                   </h1>
                   <AddressForm form={addressForm} onSubmit={onSubmitAddress} loading={sendingAddress} />
                </div>
-            ) : (page == 3) ? (
+            ) : (page === 3) ? (
                <div className="flex flex-col h-full my-12 px-8 py-12 lg:w-1/2 md:w-full md:px-16 sm:w-full mobile:w-full mobilesm:w-full">
                   <h1 
                      className="text-red-800 flex-col font-bold pb-8 text-start self-start mobilesm:text-2xl mobile:text-2xl md:text-3xl lg:text-3xl">

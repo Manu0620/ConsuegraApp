@@ -119,8 +119,9 @@ export const CartSheet = () => {
           onClick={() => setOpenCart(false)}>
              <IoClose />
         </SheetClose>
+        {!loading && !user? (
+        <LoginForm open={openLogin} close={() => setOpenLogin(false)} setOpen={() => setOpenLogin}/>): null}
       </SheetContent>
-      <LoginForm open={openLogin} close={() => setOpenLogin(false)} setOpen={() => setOpenLogin}/>
     </Sheet>
   );
 };
