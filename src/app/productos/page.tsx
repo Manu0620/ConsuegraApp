@@ -1,22 +1,21 @@
 'use client';
 
-import { use, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { filtersFormSchema } from '@/lib/utils';
-import type { Products } from '../api/models/products';
-import { ProductCard } from '@/components/view-products/product-card';
-import { FiltersForm } from '@/components/view-products/filters-form';
-import { LuLoader2 } from 'react-icons/lu';
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import {
    Select,
    SelectContent,
    SelectItem,
-   SelectValue,
    SelectTrigger,
+   SelectValue,
 } from '@/components/ui/select';
-import { set } from 'zod';
+import { FiltersForm } from '@/components/view-products/filters-form';
+import { ProductCard } from '@/components/view-products/product-card';
+import { filtersFormSchema } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
+import { LuLoader2 } from 'react-icons/lu';
+import type { Products } from '../api/models/products';
 
 interface FormData {
    search: string;
@@ -108,7 +107,7 @@ export default function Products() {
    useEffect(() => {
       const params = createQueryParams(filters);
       fetchProducts(params);
-   }, [page, limit, filters]);
+   }, [page, limit, filters, createQueryParams]);
 
    // Renderizado condicional en componentes separados
    const LoadingComponent = () => (

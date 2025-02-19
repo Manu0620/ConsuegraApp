@@ -1,7 +1,4 @@
 import Image from 'next/image';
-import { Menu } from '@/components/menu';
-import React from 'react';
-import { Footer } from '@/components/footer';
 import Link from 'next/link';
 
 export default function Agrovet() {
@@ -150,10 +147,12 @@ export default function Agrovet() {
                   </div>
                </div>
                <div className="flex basis-1/2 justify-end items-center">
-                  <img
-                     className="shadow-lg object-cover border-l-2  border-red-700 rounded-[25px]"
+                  <Image
+                     className="shadow-lg object-cover w-full h-full border-l-2  border-red-700 rounded-[25px]"
                      src={'/sucursales/fachadas/rm-fachada.jpg'}
                      alt="..."
+                     width={0}
+                     height={0}
                   />
                </div>
             </div>

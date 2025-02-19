@@ -2,6 +2,7 @@
 
 import { Principles } from '@/components/constants/principles';
 import { Principle } from '@/components/nosotros/principle';
+import Image from 'next/image';
 import { BsEyeFill } from 'react-icons/bs';
 import { FaBullseye } from 'react-icons/fa6';
 
@@ -17,10 +18,13 @@ export default function Nosotros() {
    return (
       <main className="flex min-h-screen flex-col items-center p-0 bg-red">
          <section className="hero-nosotros mt-36 relative shadow-md z-30 flex flex-row items-center w-full min-h-fit bg-white overflow-hidden">
-            <img
+            <Image
                src={'/sobre-nosotros.png'}
                alt="..."
-               className="mt-10 object-cover"
+               className="mt-10 object-cover w-full h-full"
+               width={0}
+               height={0}
+               unoptimized
             />
             <h1 className="absolute left-1/4 text-5xl flex flex-col text-white font-bold text-pretty leading-none mobilesm:text-[16px] mobile:text-lg sm:text-xl md:text-2xl lg:text-5xl">
                <span className="font-thin text-2xl leading-none mobilesm:text-[8px] mobile:text-[12px] sm:text-sm md:text-xl lg:text-2xl">
@@ -75,10 +79,13 @@ export default function Nosotros() {
                   </p>
                </div>
                <div className="flex flex-col basis-5/12 justify-center items-center">
-                  <img
-                     className="border border-red-700 contrast-75 antialiased object-cover drop-shadow-lg rounded-3xl w-fit"
+                  <Image
+                     className="border border-red-700 contrast-75 w-fit h-full object-cover drop-shadow-lg rounded-3xl"
                      src={'/nosotros/Ramon-Consuegra.jpg'}
                      alt="..."
+                     width={0}
+                     height={0}
+                     unoptimized
                   />
                   <h1 className=" text-red-700 font-semibold mt-2 text-pretty text-center mobilesm:text-sm mobile:text-sm md:text-lg lg:text-xl">
                      Sr. Ramón María Consuegra Lebrón

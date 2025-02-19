@@ -3,6 +3,7 @@
    "plugins": ["prettier"],
    "rules": {
       "prettier/prettier": "warn",
-      "no-console": "off"
+      "no-console": "off",
+      "next/no-img-element": "off"
    }
 }

@@ -6,16 +6,19 @@ import Link from 'next/link';
 import { FaBookOpen, FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 import { Branchs } from '@/components/constants/branchs';
-import { Mail } from '@/components/email/contact-mail';
+import Image from 'next/image';
 
 export default function Contacto() {
    return (
       <main className="flex min-h-screen flex-col items-center p-0">
          <section className="hero-nosotros mt-36 relative shadow-md z-30 flex flex-row items-center w-full min-h-fit bg-white overflow-hidden">
-            <img
+            <Image
                src={'/canales-contacto.png'}
                alt="..."
-               className="mt-10 object-cover"
+               className="mt-10 object-cover w-full h-full"
+               width={0}
+               height={0}
+               unoptimized
             />
             <h1 className="absolute left-1/4 flex flex-col text-white font-semibold my-5 text-pretty leading-none mobilesm:text-[14px] mobile:text-lg sm:text-xl md:text-2xl lg:text-5xl">
                Canales de contacto
