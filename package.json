@@ -10,7 +10,7 @@
     "format": "prettier --write ."
   },
   "prisma": {
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
