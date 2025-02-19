@@ -5,16 +5,15 @@ export const POST = async (req: Request) => {
    try {
       const { names, email, html } = await req.json();
 
-
       // Configura el transporte con nodeMailer
       const transporter = nodemailer.createTransport({
          service: 'Gmail',
-         host: "smtp.gmail.com",
+         host: 'smtp.gmail.com',
          port: 465,
          secure: true,
          auth: {
             user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS, 
+            pass: process.env.EMAIL_PASS,
          },
       });
 
@@ -27,8 +26,10 @@ export const POST = async (req: Request) => {
          attachements: [
             {
                filename: 'CurriculumVitae.pdf',
-               path: process.env.APP_URL + "/documents/catalogo-productos-consuegra.pdf",
-            }
+               path:
+                  process.env.APP_URL +
+                  '/documents/catalogo-productos-consuegra.pdf',
+            },
          ],
       };
 
@@ -36,10 +37,15 @@ export const POST = async (req: Request) => {
       await transporter.sendMail(mailOptions);
 
       // Responder con éxito
-      return NextResponse.json({ success: true, message: 'Email sent successfully!' });
+      return NextResponse.json({
+         success: true,
+         message: 'Email sent successfully!',
+      });
    } catch (error) {
-     console.error('Error sending email:', error);
-     return NextResponse.json({ error: 'An error occurred while sending the email' }, { status: 500 });
+      console.error('Error sending email:', error);
+      return NextResponse.json(
+         { error: 'An error occurred while sending the email' },
+         { status: 500 },
+      );
    }
- };
-
+};

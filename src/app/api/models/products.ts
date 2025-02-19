@@ -8,4 +8,4 @@ export interface Products {
    status?: boolean;
    price: number;
    minimumPrice: number;
- }
+}
