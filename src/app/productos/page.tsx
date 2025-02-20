@@ -107,7 +107,7 @@ export default function Products() {
    useEffect(() => {
       const params = createQueryParams(filters);
       fetchProducts(params);
-   }, [page, limit, filters, createQueryParams]);
+   }, [page, limit, filters]);
 
    // Renderizado condicional en componentes separados
    const LoadingComponent = () => (
