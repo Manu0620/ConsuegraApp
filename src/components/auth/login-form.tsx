@@ -1,15 +1,16 @@
 'use client';
 
+import { loginFormSchema } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { X } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-   Form,
-   FormControl,
-   FormField,
-   FormItem,
-   FormLabel,
-   FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
+import { IoEnterSharp } from 'react-icons/io5';
+import { LuLoader2 } from 'react-icons/lu';
+import { MdDangerous } from 'react-icons/md';
+import { PiSealWarningFill } from 'react-icons/pi';
+import { toast } from '../hooks/use-toast';
 import { Button } from '../ui/button';
 import {
    Dialog,
@@ -19,18 +20,17 @@ import {
    DialogTitle,
    DialogTrigger,
 } from '../ui/dialog';
-import { IoClose, IoEnterSharp } from 'react-icons/io5';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import {
+   Form,
+   FormControl,
+   FormField,
+   FormItem,
+   FormLabel,
+   FormMessage,
+} from '../ui/form';
+import { Input } from '../ui/input';
 import { RegistrationForm } from './registration-form';
-import { LuLoader2 } from 'react-icons/lu';
-import { toast } from '../hooks/use-toast';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { loginFormSchema } from '@/lib/utils';
-import { MdDangerous } from 'react-icons/md';
-import { PiSealWarningFill } from 'react-icons/pi';
 import { useUser } from './userContext';
-import { X } from 'lucide-react';
 
 interface FormData {
    email: string;
@@ -126,7 +126,7 @@ export const LoginForm = (props: {
          <Dialog open={isLogOpen}>
             {props.open === false && !user ? (
                <DialogTrigger
-                  className="self-center px-8 text-red-800 hover:scale-110 hover:text-red-900 transition ease-linear duration-100"
+                  className="self-left px-8 text-red-800 hover:scale-110 hover:text-red-900 transition ease-linear duration-100"
                   onClick={() => setIsLogOpen(true)}
                >
                   <IoEnterSharp size={36} />

@@ -80,17 +80,17 @@ export default function Nosotros() {
                </div>
                <div className="flex flex-col basis-5/12 justify-center items-center">
                   <Image
-                     className="border border-red-700 contrast-75 w-fit h-full object-cover drop-shadow-lg rounded-3xl"
+                     className="border border-red-800 contrast-75 w-fit h-full object-cover drop-shadow-lg rounded-3xl"
                      src={'/nosotros/Ramon-Consuegra.jpg'}
                      alt="..."
                      width={0}
                      height={0}
                      unoptimized
                   />
-                  <h1 className=" text-red-700 font-semibold mt-2 text-pretty text-center mobilesm:text-sm mobile:text-sm md:text-lg lg:text-xl">
+                  <h1 className=" text-gray-800 font-semibold mt-2 text-pretty text-center mobilesm:text-sm mobile:text-sm md:text-lg lg:text-xl">
                      Sr. Ramón María Consuegra Lebrón
                   </h1>
-                  <p className=" text-red-700 font-normal text-pretty text-center mobilesm:text-sm mobile:text-sm md:text-md lg:text-md">
+                  <p className=" text-red-800 font-semibold text-pretty text-center mobilesm:text-sm mobile:text-sm md:text-md lg:text-md">
                      Presidente
                   </p>
                </div>

@@ -13,12 +13,13 @@ import {
    BsFillPatchCheckFill,
    BsFillPatchExclamationFill,
 } from 'react-icons/bs';
-import { FaOpencart, FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle } from 'react-icons/fa';
 import { IoExitSharp } from 'react-icons/io5';
 import { LoginForm } from './auth/login-form';
 import { UserVerification } from './auth/user-verification';
 import { useUser } from './auth/userContext';
 import { useCart } from './cart/cart-context';
+import { CartSheet } from './cart/cart-sheet';
 import { MenuItems } from './menu-items';
 import { Button } from './ui/button';
 
@@ -89,15 +90,7 @@ export const Menu = () => {
 
                {!loading && user == null ? <LoginForm open={false} /> : null}
 
-               <Button
-                  onClick={() => router.push('/checkout')}
-                  className="relative self-center text-red-800 hover:scale-110 hover:text-red-900 transition ease-linear duration-100"
-               >
-                  <FaOpencart size={36} className="drop-shadow-lg" />
-                  <span className="absolute -top-1 -right-1 text-xs font-bold text-black bg-red-100 rounded-full py-1 px-2">
-                     {cartLength}
-                  </span>
-               </Button>
+               <CartSheet />
             </div>
             <div className="nav-bar flex flex-row mt-[-60px] relative z-40 w-full h-36 justify-center items-center bg-red-800 border-b border-white">
                <MenuItems />
