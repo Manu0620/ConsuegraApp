@@ -26,7 +26,7 @@ export default function CheckOut() {
    const [page, setPage] = useState(0);
    const router = useRouter();
 
-   const { user, person, setPerson, address, loading, checkVerification } =
+   const { user, person, setPerson, address, setAddress, loading, checkVerification } =
       useUser();
 
    useEffect(() => {
@@ -111,6 +111,7 @@ export default function CheckOut() {
 
       if (status === 200) {
          setPage(3);
+         setAddress(address);
          setSendingAddress(false);
          toast({
             title: title + ' ' + address.name,
