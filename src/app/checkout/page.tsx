@@ -80,7 +80,16 @@ export default function CheckOut() {
                variant: 'success',
             });
          }
-      },
+
+         if (status === 400) {
+            setSendingCustomer(false);
+            toast({
+               title: title + ' ' + person.name,
+               icon: <FiCheckCircle className="text-red-600" />,
+               description: message,
+               variant: 'destructive',
+            });
+         }
    );
 
    const onSubmitAddress = addressForm.handleSubmit(async (data: Address) => {
