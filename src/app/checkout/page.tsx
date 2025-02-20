@@ -90,6 +90,7 @@ export default function CheckOut() {
                variant: 'destructive',
             });
          }
+      }
    );
 
    const onSubmitAddress = addressForm.handleSubmit(async (data: Address) => {
