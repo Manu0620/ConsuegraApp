@@ -7,8 +7,7 @@ import {
    createContext,
    ReactNode,
    useContext,
-   useEffect,
-   useState,
+   useState
 } from 'react';
 import { FiCheckCircle } from 'react-icons/fi';
 import { VerificationEmail } from '../email/verify-mail';
@@ -40,21 +39,18 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
    const [isVerOpen, setIsVerOpen] = useState(false);
 
    const router = useRouter();
-
-   useEffect(() => {
-      const fetchUser = async () => {
-         setLoading(true);
-         const response = await fetch('/api/auth/me');
-         if (response.ok) {
-            const { user, person, address } = await response.json();
-            setUser(user || null);
-            setPerson(person || null);
-            setAddress(address || null);
-         }
-         setLoading(false);
-      };
-      if (!user) fetchUser();
-   }, [user, person, address]);
+   
+   const fetchUser = async () => {
+      setLoading(true);
+      const response = await fetch('/api/auth/me');
+      if (response.ok) {
+         const { user, person, address } = await response.json();
+         setUser(user || null);
+         setPerson(person || null);
+         setAddress(address || null);
+      }
+      setLoading(false);
+   };
 
    const checkVerification = async () => {
       if (user !== null) {
@@ -71,6 +67,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
    const login = async (user: User) => {
       setUser(user);
+      fetchUser();
       toast({
          variant: 'success',
          title: 'Inicio de sesión exitoso!',
