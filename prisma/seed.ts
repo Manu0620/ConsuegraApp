@@ -1,4 +1,4 @@
-import prisma from '../src/app/api/lib/prisma';
+import prisma from "../src/app/api/lib/prisma";
 
 async function main() {
    const provinces = [
