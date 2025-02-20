@@ -1,5 +1,5 @@
-import nodeMailer from 'nodemailer';
 import { NextResponse } from 'next/server';
+import nodeMailer from 'nodemailer';
 
 export const POST = async (req: Request) => {
    try {
@@ -21,8 +21,8 @@ export const POST = async (req: Request) => {
 
       // Configurar los detalles del correo electrónico
       const mailOptions = {
-         from: email,
-         to: process.env.EMAIL_RECIPIENT,
+         from: process.env.EMAIL_USER,
+         to: email,
          subject: `Contacto via pagina web de ${names}`,
          text: message,
       };
