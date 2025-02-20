@@ -49,6 +49,7 @@ export default function Products() {
       mode: 'onBlur',
    });
 
+
    // Función para crear parámetros de consulta
    const createQueryParams = (filterData: FormData): URLSearchParams => {
       const params = new URLSearchParams(
@@ -60,6 +61,8 @@ export default function Products() {
       params.set('limit', limit.toString());
       return params;
    };
+
+   const params = createQueryParams(filters);
 
    // Función para obtener productos
    const fetchProducts = async (params: URLSearchParams) => {
@@ -105,7 +108,7 @@ export default function Products() {
 
    // useEffect para la carga inicial y actualización al cambiar de página o límite
    useEffect(() => {
-      const params = createQueryParams(filters);
+      
       fetchProducts(params);
    }, [page, limit, filters]);
 
