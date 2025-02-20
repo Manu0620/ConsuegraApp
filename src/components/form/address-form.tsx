@@ -7,13 +7,13 @@ import {
    FormMessage,
 } from '@/components/ui/form';
 
-import { Input } from '../ui/input';
-import { UseFormReturn } from 'react-hook-form';
-import { Input46 } from './PhoneInput';
-import { Button } from '../ui/button';
-import { LuLoader2 } from 'react-icons/lu';
-import { IoIosSend } from 'react-icons/io';
 import { Address, State } from '@prisma/client';
+import { useState } from 'react';
+import { UseFormReturn } from 'react-hook-form';
+import { IoIosSend } from 'react-icons/io';
+import { LuLoader2 } from 'react-icons/lu';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 import {
    Select,
    SelectContent,
@@ -23,7 +23,6 @@ import {
    SelectTrigger,
    SelectValue,
 } from '../ui/select';
-import { useEffect, useState } from 'react';
 import { Textarea } from '../ui/textarea';
 
 interface CustomerInfoFormProps {
@@ -37,16 +36,14 @@ export const AddressForm = (props: CustomerInfoFormProps) => {
    const [states, setStates] = useState<State[]>([]);
    const [selectedState, setSelectedState] = useState('');
 
-   useEffect(() => {
-      const getStates = async () => {
-         const res = await fetch('/api/address/states');
-         const data = await res.json();
-         const { states } = data;
-         setStates(states);
-      };
+   const getStates = async () => {
+      const res = await fetch('/api/address/states');
+      const data = await res.json();
+      const { states } = data;
+      setStates(states);
+   };
 
-      getStates();
-   }, []);
+   getStates();
 
    const stateChange = (value: string) => {
       setSelectedState(value);
